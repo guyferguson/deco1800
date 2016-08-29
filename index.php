@@ -21,7 +21,7 @@
   </head>
   <body>
 	<div class="entry-content wide"><h2>Better Families Now!</h2>
-    <p> Enter a generation year (serach returns +/- ten years either side) </p>
+    <p> Enter a generation year (search returns +/- ten years either side) </p>
 		
 			<p>Enter Generation Year    Enter your surname here:</p>
 		<form action="#" id="searchTrove">
