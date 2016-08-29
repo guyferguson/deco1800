@@ -11,7 +11,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://deco1800.uqcloud.net/wp-content/themes/twentythirteen/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -21,8 +21,11 @@
   </head>
   <body>
 	<div class="entry-content wide"><h2>Better Families Now!</h2>
-			<p>Enter your surname here:</p>
+    <p> Enter a generation year (serach returns +/- ten years either side) </p>
+		
+			<p>Enter Generation Year    Enter your surname here:</p>
 		<form action="#" id="searchTrove">
+        	<input id="searchYear" type="number" />
 			<input id="searchTerm" type="text" />
 		<select id="sortBy">
 				<option>dateasc</option>
@@ -41,9 +44,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-     <script src="js/trove.js"></script>
+    <script src="js/trove.js"></script>
     <script type="text/javascript" src="js/jquery.js?ver=1.11.1"></script>
-		<script type="text/javascript" src="js/jquery-migrate.min.js?ver=1.2.1"></script>
+	<script type="text/javascript" src="js/jquery-migrate.min.js?ver=1.2.1"></script>
         
   </body>
 </html>

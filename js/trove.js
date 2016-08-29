@@ -2,7 +2,7 @@
 // 27.08.2016  Moved here by GuyFerguson, to separate js from main presentation page index.php
 // Added a reference on index.php:
 //
-//         <script src="js/uq.js">
+//         <script src="js/trove.js">
 
     var loadedImages = [];
     var imageYears = [];
@@ -32,11 +32,11 @@
 
         event.preventDefault();
         loadedImages = [];
+		imageYears = [];
 
-	found = 0;
+		found = 0;
 
         //get input values
-
         var searchTerm = $("#searchTerm").val().trim();
 
         searchTerm = searchTerm.replace(/ /g, "%20");
@@ -77,12 +77,6 @@
 
 
 
-
-
-
-
-
-
     /*
 
      *   Depending where the image comes from, there is a special way to get that image from the website.
@@ -102,92 +96,99 @@
         // console.log(imgYear + " is the year of the image");
 		} else {
 		// console.log(imgYear + " is not a valid year");
-		 imgYear = "9999";  // Set it to 9999, then we include 9999 with every generation
+		 imgYear = "No Date";  // Set it to 9999, then we include 9999 with every generation
 		}
-        if (imgUrl.indexOf(urlPatterns[0]) >= 0) { // flickr
+		
+	    var searchYear = $("#searchYear").val().trim();
+		
+		if (imgYear == "No Date" || ((Number(imgYear) > Number(searchYear) - 11) && (Number(imgYear) < Number(searchYear) + 11))) {
+			console.log("This pic is  " + imgYear + " which is near " + searchYear); 
+			  if (imgUrl.indexOf(urlPatterns[0]) >= 0) { // flickr
+	  
+			  found++;
+	  
+				  addFlickrItem(imgUrl, troveItem, imgYear);
+	  
+	  
+	  
+			  } else if (imgUrl.indexOf(urlPatterns[1]) >= 0) { // nla.gov
+	  
+			  found++;
+	  
+				  loadedImages.push(
+	  
+					  imgUrl + "/representativeImage?wid=900" // change ?wid=900 to scale the image
+	  
+				  );
+				  imageYears.push(imgYear);
+	  
+	  
+			  } else if (imgUrl.indexOf(urlPatterns[2]) >= 0) { //artsearch
+	  
+			  found++;
+	  
+				  loadedImages.push(
+	  
+					  "http://artsearch.nga.gov.au/IMAGES/LRG/" + getQueryVariable("IRN", imgUrl) + ".jpg"
+	  
+				  );
+				  imageYears.push(imgYear);
+	  
+	  
+	  
+			  } else if (imgUrl.indexOf(urlPatterns[3]) >= 0) { //recordsearch
+	  
+			  found++;
+	  
+				  loadedImages.push(
+	  
+					  "http://recordsearch.naa.gov.au/NAAMedia/ShowImage.asp?T=P&S=1&B=" + getQueryVariable("Number", imgUrl)
+	  
+				  );
+				  imageYears.push(imgYear);
+	  
+	  
+	  
+			  } else if (imgUrl.indexOf(urlPatterns[4]) >= 0) { //slsa
+	  
+				  found++;
+	  
+				  loadedImages.push(
+	  
+					  imgUrl.slice(0, imgUrl.length - 3) + "jpg"
+	  
+			  );
+				  imageYears.push(imgYear);
+	  
+	  
+	  
+			  } else if (imgUrl.indexOf(urlPatterns[5]) >= 0) { // collections.museumvictoria.com.au
+	  
+				  found++;
+				  //console.log(troveItem  );
+				  //console.log("We should perhaps go to: ");
+				  //console.log(troveItem.identifier[1].value);
+	  
+				  loadedImages.push(
+	  
+					 troveItem.identifier[1].value
+	  
+			  );
+				  imageYears.push(imgYear);
+	  
+	  
+	  
+			  }
+	  
+			  else { // Could not reliably load image for item
+	  
+				  // UNCOMMENT FOR DEBUG:
+	  
+			  // console.log("Not available: " + imgUrl);
+	  
+			  }
+		}
 
-		found++;
-
-            addFlickrItem(imgUrl, troveItem, imgYear);
-
-
-
-        } else if (imgUrl.indexOf(urlPatterns[1]) >= 0) { // nla.gov
-
-		found++;
-
-            loadedImages.push(
-
-                imgUrl + "/representativeImage?wid=900" // change ?wid=900 to scale the image
-
-            );
-			imageYears.push(imgYear);
-
-
-        } else if (imgUrl.indexOf(urlPatterns[2]) >= 0) { //artsearch
-
-		found++;
-
-            loadedImages.push(
-
-                "http://artsearch.nga.gov.au/IMAGES/LRG/" + getQueryVariable("IRN", imgUrl) + ".jpg"
-
-            );
-			imageYears.push(imgYear);
-
-
-
-        } else if (imgUrl.indexOf(urlPatterns[3]) >= 0) { //recordsearch
-
-		found++;
-
-            loadedImages.push(
-
-                "http://recordsearch.naa.gov.au/NAAMedia/ShowImage.asp?T=P&S=1&B=" + getQueryVariable("Number", imgUrl)
-
-            );
-			imageYears.push(imgYear);
-
-
-
-        } else if (imgUrl.indexOf(urlPatterns[4]) >= 0) { //slsa
-
-            found++;
-
-            loadedImages.push(
-
-                imgUrl.slice(0, imgUrl.length - 3) + "jpg"
-
-		);
-			imageYears.push(imgYear);
-
-
-
-  		} else if (imgUrl.indexOf(urlPatterns[5]) >= 0) { // collections.museumvictoria.com.au
-
-            found++;
-			//console.log(troveItem  );
-			//console.log("We should perhaps go to: ");
-			//console.log(troveItem.identifier[1].value);
-
-            loadedImages.push(
-
-               troveItem.identifier[1].value
-
-        );
-			imageYears.push(imgYear);
-
-
-
-        }
-
-        else { // Could not reliably load image for item
-
-            // UNCOMMENT FOR DEBUG:
-
-	    // console.log("Not available: " + imgUrl);
-
-        }
 
     }
 
@@ -248,7 +249,7 @@
 
             image.style.display = "inline-block";
 
-            image.style.width = "48%";
+            image.style.width = "18%";
 
             image.style.margin = "1%";
 
