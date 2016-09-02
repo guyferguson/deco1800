@@ -312,7 +312,7 @@
 
             image.style.display = "inline-block";
 
-            image.style.width = "18%";
+            image.style.width = "10%";
 
             image.style.margin = "1%";
 
