@@ -43,7 +43,7 @@
 
         searchTerm = searchTerm + "%20portrait";    //200816 FFT addition to return human images
 
-        var sortBy = $("#sortBy").val();
+        //var sortBy = $("#sortBy").val();
 
         var apiKey = "bjta6lbqejkmpk9k";
 
@@ -273,7 +273,7 @@
 
         $.getJSON(flickr_url + photo_id + "&format=json&nojsoncallback=1", function(data) {
 
-            if (data.stat == "ok") {
+            if (data.stat === "ok") {
 
                 var flickr_image_url = data.sizes.size[data.sizes.size.length - 1].source;
 
@@ -312,14 +312,13 @@
 
             image.style.display = "inline-block";
 
-            image.style.width = "10%";
+            image.style.width = "30%";
 
             image.style.margin = "1%";
 
             image.style.verticalAlign = "top";
-
-
-
+			
+			
             $("#output").append(image);
 			    $("#output").append(imageYears[i]);
 
