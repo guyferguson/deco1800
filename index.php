@@ -23,10 +23,10 @@
 	<div class="container-fluid">
     	<div class="row-fluid">
     		<div class="col-xs-2">
-    <h2>Better Families Now!</h2>
+    <h4>Better Families Now!</h4>
     <p> Enter a generation year (search returns +/- ten years either side) </p>
 		
-			<p>Enter Generation Year    Enter your surname here:</p>
+			<p class = "lead">Enter Generation Year    Enter your surname here:</p>
 			<form action="#" id="searchTrove">
         	<input id="searchYear" type="number" />
 			<input id="searchTerm" type="text" />
