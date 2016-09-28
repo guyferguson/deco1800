@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-12">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -18,6 +18,7 @@
     <![endif]-->
   </head>
   <body>
+  
 	<div class="container-fluid">
   
   
@@ -25,7 +26,7 @@
  			<div id= "right_container" class="col-sm-4">
  					
 <!-- Trigger the modal with a SIGN IN button -->
-			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Sign In</button>
+			<button id= "signbutton" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Sign In</button>
 
 <!-- SIGN IN Modal -->
 			<div id="myModal" class="modal fade" role="dialog">
@@ -63,7 +64,7 @@
 		</div>
 
 <!-- Trigger the modal with a SIGN UP button -->
-			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Sign Up</button>
+			<button id= "signbutton" type="button" class="btn btn-primary btn-lg"" data-toggle="modal" data-target="#myModal2">Sign Up</button>
 
 <!-- SIGN UP Modal -->
 			<div id="myModal2" class="modal fade" role="dialog">
@@ -110,32 +111,26 @@
 
 
 		</div>
-
-
-  		<div class="col-sm-8">FAMILY TREE</div>
   		</div>
 		</div>
 		</div>
 
 
-<footer class="footer">
-		<nav class="navbar navbar-default">
+
+		<nav class="navbar navbar-fixed-bottom">
  			<div class="container-fluid">
-    			<div class="navbar-header">
-     				<a class="navbar-brand" href="index.php">Strengthen My DNA</a>
-   				</div>
-    		<ul class="nav navbar-nav">
-			<li><a href="family_tree.php">Family Tree</a></li> 
-      			<li><a href="image_selection.php">Facial Recognition</a></li> 
-      			<li><a href="about.html">About</a></li> 
+    		<ul class="nav navbar-inverse navbar-nav">
+    			<li class="active"><a class="navbar-brand" href="index.php">Strengthen My DNA</a>
+				<li><a href="family_tree.php">Family Tree</a></li>  
+      			<li><a href="about.php">About</a></li> 
     		</ul>
 		<ul class="nav navbar-nav navbar-right">
-      			<li class="active"><a href="index.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      			<li><a href="index.php"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+      			<li><a href="index.php"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+      			<li><a href="index.php"><span class="glyphicon glyphicon-log-in"></span> Sign Out</a></li>
     		</ul>
     		</nav>
     		</div>
- </footer>
+ 
   
 <!--
     	<div class="row-fluid">
