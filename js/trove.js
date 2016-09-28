@@ -14,8 +14,12 @@
 
 	 	if(found === loadedImages.length) {
 
-        $("#output").append("<h3>Image Search Results</h3>");
+     //   $("#output").append("<h3>Image Search Results</h3>");
 			printImages();
+		 //Handle the paginator hiding of sets of images
+		   $('.img6.test:not(:first)').css('display', 'none');
+		     $('#smart-paginator').smartpaginator({ totalrecords: Math.round(loadedImages.length / 6)-1, recordsperpage: 1, datacontainer: 'output', dataelement: '.img6', initval: 0, next: 'Next', prev: 'Prev', first: 'First', last: 'Last', theme: 'green'    });
+ 
 		} else {
 			setTimeout(waitForFlickr, 250);
 		}
