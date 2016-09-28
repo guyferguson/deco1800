@@ -21,23 +21,23 @@ Mint: #9BC7B8
 Mid-navy: #223059
 Orange: #F2594B
 Light-orange: #FFB176
-*/
+
 /* Shahn's CSS added 080916 */
 
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 .row.content {height: 100%}
     
-/* Set gray background color and 100% height */
+/* Set white background color and 100% height */
 .col-sm-4 {
-	background-color: #f1f1f1;
+	background-color: #FFFFFF;
     height: 100%;
 }
     
 /* Set black background color, white text and some padding */
 footer {
-     	background-color: #555;
-      	color: white;
-      	padding: 15px;
+	background-color: #555555;
+    color: white;
+    padding: 15px;
 }
     
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -59,21 +59,38 @@ body {
   margin-bottom: 60px;
 }
 
-.footer {
+#bootstrap-overrides .footer{
   position: absolute;
   bottom: 0;
   width: 100%;  
 /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #f5f5f5;
+  background-color: #FFFFFF;
 }
 #div2 {
-	float: right;
-    width: 100px;
-    height: 100px;
+	float: left;
+    width: 5px;
+    height: 5px;
     border: 1px solid black;
+    padding: 100px;
 }
 
+.bosom-none {
+    margin-right: -15px; // Removes the right gap
+    margin-left: -15px;  // Removes the left gap
+}
+
+#signbutton{
+	float: center;
+}
+
+table, td {
+    border: 1px solid black;
+    padding: 5px;
+}
+table {
+    border-spacing: 15px;
+}
 
 /**
  * Table of Contents:
@@ -696,10 +713,10 @@ input[type="submit"],
 input[type="button"],
 input[type="reset"] {
 	background: #e05d22; /* Old browsers */
-	background: -webkit-linear-gradient(top, #e05d22 0%, #d94412 100%); /* Chrome 10+, Safari 5.1+ */
-	background:   linear-gradient(to bottom, #e05d22 0%, #d94412 100%); /* W3C */
+	background: -webkit-linear-gradient(top, #FFA233 0%, #FFA233 100%); /* Chrome 10+, Safari 5.1+ */
+	background:   linear-gradient(to bottom, #FFA233 0%, #FFA233 100%); /* W3C */
 	border: none;
-	border-bottom: 3px solid #b93207;
+	border-bottom: 3px solid #FFA233;
 	border-radius: 2px;
 	color: #fff;
 	display: inline-block;
@@ -715,9 +732,9 @@ input[type="reset"]:hover,
 input[type="submit"]:focus,
 input[type="button"]:focus,
 input[type="reset"]:focus {
-	background: #ed6a31; /* Old browsers */
-	background: -webkit-linear-gradient(top, #ed6a31 0%, #e55627 100%); /* Chrome 10+, Safari 5.1+ */
-	background:   linear-gradient(to bottom, #ed6a31 0%, #e55627 100%); /* W3C */
+	background: #ED6431; /* Old browsers */
+	background: -webkit-linear-gradient(top, #ED6431 0%, #ED6431 100%); /* Chrome 10+, Safari 5.1+ */
+	background:   linear-gradient(to bottom, #ED6431 0%, #ED6431 100%); /* W3C */
 	outline: none;
 }
 
@@ -725,9 +742,9 @@ button:active,
 input[type="submit"]:active,
 input[type="button"]:active,
 input[type="reset"]:active {
-	background: #d94412; /* Old browsers */
-	background: -webkit-linear-gradient(top, #d94412 0%, #e05d22 100%); /* Chrome 10+, Safari 5.1+ */
-	background:   linear-gradient(to bottom, #d94412 0%, #e05d22 100%); /* W3C */
+	background: #ED6431; /* Old browsers */
+	background: -webkit-linear-gradient(top, #ED6431 0%, #ED6431 100%); /* Chrome 10+, Safari 5.1+ */
+	background:   linear-gradient(to bottom, #ED6431 0%, #ED6431 100%); /* W3C */
 	border: none;
 	border-top: 3px solid #b93207;
 	padding: 10px 24px 11px;
