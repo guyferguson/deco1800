@@ -20,7 +20,7 @@
           .addClass( "ui-state-highlight" )
           .find( "p" )
             .html( "Dropped!" );
-      };
+      }
    });
   } );
   </script>

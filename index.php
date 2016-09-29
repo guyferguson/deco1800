@@ -23,7 +23,7 @@
   
   
   		<div class="row">
- 			<div id= "right_container" class="col-sm-4">
+ 			<div id= "right_container" class="col-sm-12">
  					
 <!-- Trigger the modal with a SIGN IN button -->
 			<button id= "signbutton" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Sign In</button>

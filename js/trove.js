@@ -16,9 +16,9 @@
 
      //   $("#output").append("<h3>Image Search Results</h3>");
 			printImages();
-		 //Handle the paginator hiding of sets of images
+		 // Hide all sets of 'img6' divs except the first one
 		   $('.img6.test:not(:first)').css('display', 'none');
-		     $('#smart-paginator').smartpaginator({ totalrecords: Math.round(loadedImages.length / 6)-1, recordsperpage: 1, datacontainer: 'output', dataelement: '.img6', initval: 0, next: 'Next', prev: 'Prev', first: 'First', last: 'Last', theme: 'green'    });
+		   $('#smart-paginator').smartpaginator({ totalrecords: Math.round(loadedImages.length / 6)-1, recordsperpage: 1, length: 5, controlsalways:true, datacontainer: 'output', dataelement: '.img6', initval: 0, next: '>', prev: '<', first: 'First', last: 'Last', theme: 'green'    });
  
 		} else {
 			setTimeout(waitForFlickr, 250);
@@ -80,18 +80,18 @@
 		if (troveItem.hasOwnProperty('issued')) {
         	imgYear = String(troveItem.issued);
 			console.log("About to work with " + imgYear + " on " + imgUrl);
-			console.log("converting imgYear into " + imgYear.substring(0,4));
+			//console.log("converting imgYear into " + imgYear.substring(0,4));
 			if (Number(imgYear) > 1500 && Number(imgYear) < 2100)  {
 			// console.log(imgYear + " is the year of the image");
 			} else if ((Number(imgYear.substring(0,4)) > 1500 && Number(imgYear.substring(0,4) < 2100))){
-			 console.log("converting imgYear into " + imgYear.substring(0,4));
+			// console.log("converting imgYear into " + imgYear.substring(0,4));
 			 imgYear = imgYear.substring(0,4);  // Set it to 9999, then we include 9999 with every generation
 			} else {
-			console.log(imgYear + " is not a valid year");	
+			//console.log(imgYear + " is not a valid year");	
 			 imgYear = "No Date";  // Set it to 9999, then we include 9999 with every generation
 			}
 		} else {
-			console.log("No year stored for " + imgUrl);
+			//console.log("No year stored for " + imgUrl);
 			imgYear = "No Date";
 		}
         var imageData = [];
@@ -265,7 +265,7 @@ function sortFunction(a, b) {
 		//  image.style.margin = "1%";
       //     image.style.verticalAlign = "top";
 
-            image.class = "ui-widget-content";
+            image.className = "draggable ui-widget-content";
 
             image.alt = loadedImages[i][2];
 		

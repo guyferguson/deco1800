@@ -26,6 +26,7 @@
   </script>
 
 <style>
+
 #draggable {
 	width: 200px;
 	height: 200px;
@@ -38,12 +39,6 @@
 	padding: 0.5em;
 	margin: 10px;
 }
-<!--
-img[title] {
-	color: red;
-	text-align: left
-}
--->
 .ui-draggable, .ui-droppable {
 	background-position: top;
 }
@@ -74,14 +69,14 @@ img[title] {
     <div class="col-sm-8"> 
       <!--          			<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>   -->
       <section>
-        <div class=child id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class=child id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class=child id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class=child id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class=child id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class=child id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class=child id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class=child id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </section>
       <section>
         <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>

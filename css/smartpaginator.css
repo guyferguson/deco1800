@@ -1,6 +1,6 @@
 ﻿.pager
 {
-    width: 720px;
+    width: 450px;
     height: 30px;
     padding: 0;
     margin: 0;
@@ -10,6 +10,7 @@
 .pager div.short
 {
     float: right;
+	display: none;
     margin: 0;
     padding: 0;
     margin-right: 10px;
@@ -55,8 +56,8 @@
 }
 .pager .btn
 {
-    display: block;
-    width: 40px;
+    display: block;    // GF - disappear this..was 'block'
+    width: 40px;   //was 40px
     text-align: center;
     float: left;
     padding: 0;
@@ -86,6 +87,7 @@
 {
     background-color: #588500;
     color: White;
+	font-size:12px;
     border: solid 1px #5f9000;
 }
 .green.active
