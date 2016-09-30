@@ -18,7 +18,7 @@
 			printImages();
 		 // Hide all sets of 'img6' divs except the first one
 		   $('.img6.test:not(:first)').css('display', 'none');
-		   $('#smart-paginator').smartpaginator({ totalrecords: Math.round(loadedImages.length / 6)-1, recordsperpage: 1, length: 5, controlsalways:true, datacontainer: 'output', dataelement: '.img6', initval: 0, next: '>', prev: '<', first: 'First', last: 'Last', theme: 'green'    });
+		   $('#smart-paginator').smartpaginator({ totalrecords: Math.round(loadedImages.length / 6)-1, recordsperpage: 1, length: 5, controlsalways:true, datacontainer: 'output', dataelement: '.img6', initval: 0, next: '>', prev: '<', first: 'First', last: 'Last', theme: 'green', display: 'single'    });
  
 		} else {
 			setTimeout(waitForFlickr, 250);
@@ -261,9 +261,9 @@ function sortFunction(a, b) {
             image.src = loadedImages[i][1];
 
        //  image.style.display = "inline-block";
-     //     image.style.width = "30%";
+        //  image.style.width = "30%";
 		//  image.style.margin = "1%";
-      //     image.style.verticalAlign = "top";
+         image.style.verticalAlign = "top";
 
             image.className = "draggable ui-widget-content";
 

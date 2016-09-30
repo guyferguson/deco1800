@@ -1,9 +1,10 @@
 ﻿.pager
 {
-    width: 450px;
+    width: 405px;   /*30 09 16 - GF - this matches width to right edge of 'Search' button exactly*/
     height: 30px;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 5px;
     padding-top: 10px;
     padding-left: 10px; /*border-radius: 8px; 	-moz-border-radius: 8px;*/
 }
@@ -27,6 +28,7 @@
 .pager ul
 {
     list-style: none;
+	width:65%;    /*300916  GF to handle when there are >9 pages */
     padding: 0;
     margin: 0;
     float: left;
@@ -56,8 +58,8 @@
 }
 .pager .btn
 {
-    display: block;    // GF - disappear this..was 'block'
-    width: 40px;   //was 40px
+    display: block;    /* GF - disappear this..was 'block'*/
+    width: 40px;   /*was 40px */
     text-align: center;
     float: left;
     padding: 0;
