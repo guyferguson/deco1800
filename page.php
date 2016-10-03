@@ -35,6 +35,36 @@
          });
  </script>
 <style>
+.wrapper {
+    position: relative;
+    padding: 0;
+    width:200px;
+    display:block;
+}
+.text {
+    position: absolute;
+    top: 0;
+    color:black;
+  /*  background-color:rgba(255,255,255,0.8);*/
+    width: 200px;
+    height: 60px;
+    line-height:60px;
+    text-align: center;
+    z-index: 10;
+    opacity: .6;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.text:hover {
+    opacity:1;
+}
+}
+
+img {
+    z-index:1;
+}
 #draggable {
 	width: 200px;
 	height: 200px;
@@ -78,8 +108,56 @@ img[title] {
           <h3>Image Search Results</h3>
           <div id="smart-paginator" > </div>
           <div id="output">
-            <div class="img6"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=102166" alt="Mcleannan Lola Ferguson and Alice, Paisley Scotland" id="draggable" title="1860" draggable="true" ondragstart="drag(event)"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=393808" alt="Johnny Ferguson - age 22 - &quot;Nallong Malbill&quot; Goulbourne [Goulburn] Tribe" id="draggable" title="1866" draggable="true" ondragstart="drag(event)"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=3361532" alt="Sir George Ferguson Bowen / J Botterill" id="draggable" title="1869" draggable="true" ondragstart="drag(event)"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=3494899" alt="Sir George Ferguson Bowen, Governor of Victoria, Australia. Bradley &amp; Rulofson" id="draggable" title="1873" draggable="true" ondragstart="drag(event)"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=3058791" alt="Helen Munro-Ferguson [wife of Governor General of Australia, 1814-1820]" id="draggable" title="1885" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-145708093/representativeImage?wid=900" alt="Miss Ferguson" id="draggable" title="1890" draggable="true" ondragstart="drag(event)"> </div>
-            <div class="img6"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=457553" alt="Wm. Ferguson, 1859 / G. L. Massingham" id="draggable" title="1896" draggable="true" ondragstart="drag(event)"> <img src="http://collections.museumvictoria.com.au/content/media/19/719719-thumbnail.jpg" alt="Photograph - Portrait of 'Sister Ferguson', Kimberley, South Africa, 1902" id="draggable" title="1902" draggable="true" ondragstart="drag(event)"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=369926" alt="Senator J. Ferguson, Queensland / D. Bernard &amp; Co" id="draggable" title="1902" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-136668243/representativeImage?wid=900" alt="Portrait of Ronald Munro Ferguson / Alice Mills" id="draggable" title="1910" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-136668354/representativeImage?wid=900" alt="[Portrait of Sir Ronald Munro Ferguson]" id="draggable" title="1910" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-136668139/representativeImage?wid=900" alt="Portrait of Ronald Munro Ferguson, 1914-20" id="draggable" title="1910" draggable="true" ondragstart="drag(event)"> </div>
+            <div class="img6"> 
+            <a href="#" class="wrapper">
+   				 <span class="text">
+                 1860
+                 </span>
+           		 <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=102166" alt="Mcleannan Lola Ferguson and Alice, Paisley Scotland" id="draggable" title="1860" draggable="true" ondragstart="drag(event)"> 
+            </a>
+             <a href="#" class="wrapper">
+   				 <span class="text">
+                 1866
+                 </span>
+            <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=393808" alt="Johnny Ferguson - age 22 - &quot;Nallong Malbill&quot; Goulbourne [Goulburn] Tribe" id="draggable" title="1866" draggable="true" ondragstart="drag(event)"> 
+             </a>
+             <a href="#" class="wrapper">
+   				 <span class="text">
+                 1869
+                 </span>
+            <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=3361532" alt="Sir George Ferguson Bowen / J Botterill" id="draggable" title="1869" draggable="true" ondragstart="drag(event)"> 
+             </a>
+             <a href="#" class="wrapper">
+   				 <span class="text">
+                 1873
+                 </span>
+            <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=3494899" alt="Sir George Ferguson Bowen, Governor of Victoria, Australia. Bradley &amp; Rulofson" id="draggable" title="1873" draggable="true" ondragstart="drag(event)"> 
+             </a>
+             <a href="#" class="wrapper">
+   				 <span class="text">
+                 1885
+                 </span>
+            <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=3058791" alt="Helen Munro-Ferguson [wife of Governor General of Australia, 1814-1820]" id="draggable" title="1885" draggable="true" ondragstart="drag(event)"> 
+             </a>
+             <a href="#" class="wrapper">
+   				 <span class="text">
+                 1890
+                 </span>
+               <img src="http://nla.gov.au/nla.obj-145708093/representativeImage?wid=900" alt="Miss Ferguson" id="draggable" title="1890" draggable="true" ondragstart="drag(event)"> </div>
+                </a>
+                 <div class="img6"> 
+             <a href="#" class="wrapper">
+   				 <span class="text">
+                 1896
+                 </span>
+           
+            <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=457553" alt="Wm. Ferguson, 1859 / G. L. Massingham" id="draggable" title="1896" draggable="true" ondragstart="drag(event)"> 
+             </a>
+             <a href="#" class="wrapper">
+   				 <span class="text">
+                 1902
+                 </span>
+            <img src="http://collections.museumvictoria.com.au/content/media/19/719719-thumbnail.jpg" alt="Photograph - Portrait of 'Sister Ferguson', Kimberley, South Africa, 1902" id="draggable" title="1902" draggable="true" ondragstart="drag(event)"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=369926" alt="Senator J. Ferguson, Queensland / D. Bernard &amp; Co" id="draggable" title="1902" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-136668243/representativeImage?wid=900" alt="Portrait of Ronald Munro Ferguson / Alice Mills" id="draggable" title="1910" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-136668354/representativeImage?wid=900" alt="[Portrait of Sir Ronald Munro Ferguson]" id="draggable" title="1910" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-136668139/representativeImage?wid=900" alt="Portrait of Ronald Munro Ferguson, 1914-20" id="draggable" title="1910" draggable="true" ondragstart="drag(event)"> </div>
             <div class="img6"> <img src="http://nla.gov.au/nla.obj-136668461/representativeImage?wid=900" alt="Portrait of  R. C. Munro Ferguson / H. Walter Barnett" id="draggable" title="1910" draggable="true" ondragstart="drag(event)"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=296917" alt="The Governor General Sir Ronald Munro-Ferguson in open carriage" id="draggable" title="1914" draggable="true" ondragstart="drag(event)"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=3128275" alt="Gnr. A.H. Ferguson, 42nd Bty. A.I.F" id="draggable" title="1915" draggable="true" ondragstart="drag(event)"> <img src="http://cdn.loc.gov/service/pnp/cph/3c20000/3c24000/3c24100/3c12195r.jpg" alt="[Homer L. Ferguson, head-and-shoulders portrait, facing left]" id="draggable" title="1919" draggable="true" ondragstart="drag(event)"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=1273466" alt="[Neva Ferguson, Bus Conductor]" id="draggable" title="1927" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-136260767/representativeImage?wid=900" alt="Portrait of Sir John Ferguson / Monte Luke" id="draggable" title="1930" draggable="true" ondragstart="drag(event)"> </div>
             <div class="img6"> <img src="http://collections.museumvictoria.com.au/content/media/48/482698-thumbnail.jpg" alt="Photograph - 'Portrait of D.B Ferguson', Melbourne, Victoria, circa 1932" id="draggable" title="1932" draggable="true" ondragstart="drag(event)"> <img src="http://cdn.loc.gov/service/pnp/cph/3c20000/3c24000/3c24100/3c07083r.jpg" alt="[Elpidio Quirino, head-and-shoulders portrait, facing front] by staff correspondant Richard C. Ferguson" id="draggable" title="1949" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-151263763/representativeImage?wid=900" alt="Group portrait of, from left to right, George Ferguson of Angus and Robertson, Thelma Clune and William Dobell, ca. 1950s" id="draggable" title="1950" draggable="true" ondragstart="drag(event)"> <img src="http://collections.museumvictoria.com.au/content/media/36/431886-thumbnail.jpg" alt="Photograph - Massey Ferguson, Group Portrait, Melbourne, Victoria, 1955-1965" id="draggable" title="1955" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-145873726/representativeImage?wid=900" alt="Portrait of Sir John Ferguson, ca. 1965 / Keast Burke" id="draggable" title="1959" draggable="true" ondragstart="drag(event)"> </div>
             <div class="img6"> <img src="http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=2848945" alt="Sir John Ferguson" id="draggable" title="1960" draggable="true" ondragstart="drag(event)"> <img src="http://collections.museumvictoria.com.au/content/media/19/432069-thumbnail.jpg" alt="Photograph - Massey Ferguson, Portrait of Ernie Nicholls, Australia, circa 1960s" id="draggable" title="1960" draggable="true" ondragstart="drag(event)"> <img src="http://collections.museumvictoria.com.au/content/media/30/381680-thumbnail.jpg" alt="Photograph - Massey Ferguson, Cane Farmer, Queensland, 1960s" id="draggable" title="1960" draggable="true" ondragstart="drag(event)"> <img src="http://collections.museumvictoria.com.au/content/media/35/431885-thumbnail.jpg" alt="Photograph - Massey Ferguson, Group Portrait, Melbourne, Victoria, 1960" id="draggable" title="1960" draggable="true" ondragstart="drag(event)"> <img src="http://recordsearch.naa.gov.au/NAAMedia/ShowImage.asp?T=P&amp;S=1&amp;B=11354941" alt="Personalities - Portrait of Sir Ronald MUNRO-FERGUSON, former Governor General" id="draggable" title="1978" draggable="true" ondragstart="drag(event)"> <img src="http://nla.gov.au/nla.obj-136335184/representativeImage?wid=900" alt="Portrait of Martin Ferguson, 1988" id="draggable" title="1988" draggable="true" ondragstart="drag(event)"> </div>

@@ -4,13 +4,13 @@
 //
 //         <script src="js/trove.js">
  	   var loadedImages = [];
-       var urlPatterns = ["flickr.com", "nla.gov.au", "artsearch.nga.gov.au", "recordsearch.naa.gov.au", "images.slsa.sa.gov.au", "collections.museumvictoria.com.au","archival-classic.sl.nsw.gov.au","handle.slv.vic.gov.au","hdl.loc.gov"];
+       var urlPatterns = ["flickr.com", "nla.gov.au", "artsearch.nga.gov.au", "recordsearch.naa.gov.au", "images.slsa.sa.gov.au", "collections.museumvictoria.com.au","archival-classic.sl.nsw.gov.au","handle.slv.vic.gov.au","hdl.loc.gov", "hdl.handle.net", "contentdm.lib.byu.edu", "cms.sl.nsw.gov.au", "gallica2.bnf.fr"];
        var found = 0;
 
 (function($){
 
 	function waitForFlickr() {
-	console.log("wait flickr Found = " + found+ "loadedImagesLength = " + loadedImages.length);
+	//console.log("wait flickr Found = " + found+ "loadedImagesLength = " + loadedImages.length);
 
 	 	if(found === loadedImages.length) {
 
@@ -29,7 +29,7 @@
     $("form#searchTrove").submit(function(event) {
 		loadedImages.length = 0;  //Clear the array
 		found = 0;
-     	console.log("startSearch Found = " + found);
+     //	console.log("startSearch Found = " + found);
 
         event.preventDefault();
         //get input values
@@ -79,7 +79,7 @@
 		//Determine if there is a date tag in JSON 
 		if (troveItem.hasOwnProperty('issued')) {
         	imgYear = String(troveItem.issued);
-			console.log("About to work with " + imgYear + " on " + imgUrl);
+			//console.log("About to work with " + imgYear + " on " + imgUrl);
 			//console.log("converting imgYear into " + imgYear.substring(0,4));
 			if (Number(imgYear) > 1500 && Number(imgYear) < 2100)  {
 			// console.log(imgYear + " is the year of the image");
@@ -97,6 +97,7 @@
         var imageData = [];
 		var path;		  
 		
+		console.log("Working with " + imgUrl);
 
 			  if (imgUrl.indexOf(urlPatterns[0]) >= 0) { // flickr
 	  		      found++;
@@ -133,15 +134,15 @@
 		  		   imageData[1] =    imgUrl.slice(0, imgUrl.length - 3) + "jpg";
 				   imageData[2] =  troveItem.title;
 				   loadedImages.push(imageData);
-			  } else if (imgUrl.indexOf(urlPatterns[5]) >= 0) { // collections.museumvictoria.com.au
+			  } else if ((imgUrl.indexOf(urlPatterns[5]) >= 0) || (imgUrl.indexOf(urlPatterns[9]) >= 0) || (imgUrl.indexOf(urlPatterns[10]) >= 0) || (imgUrl.indexOf(urlPatterns[11]) >= 0) ) { // collections.museumvictoria.com.au AND hdl.handle.net  AND contentdm.lib.byu.edu AND http://acms.sl.nsw.gov.au/_DAMt/image/16/153/d7_29086t.jpg  021016 GF
 	  
 				  found++;
 				   imageData[0] = imgYear;
-		  		   imageData[1] =     troveItem.identifier[1].value;
-				   imageData[2] =  troveItem.title;
+		  		   imageData[1] = troveItem.identifier[1].value;
+				   imageData[2] = troveItem.title;
 				   loadedImages.push(imageData);
 	  
-			  } else if (imgUrl.indexOf(urlPatterns[6]) >= 0) { // archival-classic.sl.nsw.gov.au
+			  } else if ((imgUrl.indexOf(urlPatterns[6]) >= 0)) { // archival-classic.sl.nsw.gov.au  
 	  
 				   found++;
 			   	   imageData[0] = imgYear;
@@ -152,7 +153,6 @@
 			  }  else if (imgUrl.indexOf(urlPatterns[7]) >= 0) { // handle.slv.vic.gov.au
 	  
 				  found++;
-			//	  console.log("FOUND AN SLV VIC GOV: ");
 				 	//Hackish way to determine if there is an item in identifier[1]
 	  				if (troveItem.identifier.length > 1) {
 			//			console.log("Using identifier[1]");
@@ -167,7 +167,7 @@
 		  		   imageData[1] =   path;
 				   imageData[2] =  troveItem.title;
 				   loadedImages.push(imageData);
-			console.log("Loaded images = " + imageData[0] + " and url=" + imageData[1]);
+		//	console.log("Loaded images = " + imageData[0] + " and url=" + imageData[1]);
 	  
 			  }  else if (imgUrl.indexOf(urlPatterns[8]) >= 0) { // hdl.loc.gov
 	  
@@ -185,20 +185,29 @@
 		  		   imageData[1] =   path;
 				   imageData[2] =  troveItem.title;
 				   loadedImages.push(imageData);
-			console.log("Loaded images = " + imageData[0] + " and url=" + imageData[1]);
+		//	console.log("Loaded images = " + imageData[0] + " and url=" + imageData[1]);
 	  
-			  }
+			  }  else if ((imgUrl.indexOf(urlPatterns[12]) >= 0)) { // agallica2.bnf.fr  GF 021016
+	  
+				   found++;
+			   	   imageData[0] = imgYear;
+		  		   imageData[1] =   troveItem.identifier[0].value + "/f1.highres";
+				   imageData[2] =  troveItem.title;
+				   loadedImages.push(imageData);
+	  
+			  } 
 	  
 			  else { // Could not reliably load image for item
 	  
 				  // UNCOMMENT FOR DEBUG:
 	  
-			// console.log("Not available: " + imgUrl);
+			 console.log(found + "Not available: " + imgUrl);
 	  
 			  }
 	//	}
 
-        loadedImages.sort(sortFunction);
+    // TODO turn SORT back on - temp off for testing   
+	 loadedImages.sort(sortFunction);
     }
 
 
@@ -257,25 +266,31 @@ function sortFunction(a, b) {
         for (var i = 0; i < loadedImages.length; i++) {
 
             var image = new Image();
-				
+			var spn = $("<span>", {"class": "text"});
+			$(spn).text(loadedImages[i][0]);
+			var wrapper =  $("<a>", {"class": "wrapper"}).append(spn);
+			$(wrapper).addClass("draggable");
+			$(wrapper).attr("draggable","true");
+			$(wrapper).attr("ondragstart","drag(event)");
+			console.log(wrapper);
             image.src = loadedImages[i][1];
 
        //  image.style.display = "inline-block";
         //  image.style.width = "30%";
 		//  image.style.margin = "1%";
-         image.style.verticalAlign = "top";
+        	 image.style.verticalAlign = "top";
 
-            image.className = "draggable ui-widget-content";
+            image.className = "ui-widget-content todrag";
 
             image.alt = loadedImages[i][2];
 		
-			image.id = "draggable";	
+		//	image.id = "draggable";	
 			
 			image.title = loadedImages[i][0];
 			
-			image.setAttribute("draggable","true");
+		//	image.setAttribute("draggable","true");
 			
-			image.setAttribute("ondragstart","drag(event)");		
+		//	image.setAttribute("ondragstart","drag(event)");		
 			
 // TODO Check whether image is loaded with jQuery
 
@@ -287,9 +302,10 @@ function sortFunction(a, b) {
 				$("#output").append(newHtml);
 				newHtml=$("<div class = 'img6'>");
 				//Add the first image to this img6 div
-				newHtml.append(image);
+				newHtml.append(wrapper.append(image));
+				
 			}else {
-				newHtml.append(image);
+				newHtml.append(wrapper.append(image));
 			}
 		
 		 }

@@ -13,8 +13,8 @@
 <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
 <script>
   $( function() {
-    $( "#draggable" ).draggable();
-    $( "#droppable" ).droppable({
+    $( ".draggable" ).draggable();
+    $( ".droppable" ).droppable({
       drop: function( event, ui ) {
         $( this )
           .addClass( "ui-state-highlight" )
@@ -27,13 +27,13 @@
 
 <style>
 
-#draggable {
+.todrag {
 	width: 200px;
 	height: 200px;
 	padding: 0.5em;
 	margin: 10px 10px 10px 0;
 }
-#droppable {
+.droppable {
 	width: 200px;
 	height: 200px;
 	padding: 0.5em;

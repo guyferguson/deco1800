@@ -27,7 +27,38 @@ Light-orange: #FFB176
 #output {
 	margin-top:15px;
 } 
+/* And for the Year showing over image */
+.wrapper {
+    position: relative;
+    padding: 0;
+    width:240px;
+    display:inline-block;
+}
+.text {
+    position: absolute;
+    top: 0;
+    color:black;
+  /*  background-color:rgba(255,255,255,0.8);*/
+    width: 200px;
+    height: 60px;
+    line-height:60px;
+    text-align: center;
+    z-index: 10;
+    opacity: .6;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
 
+.text:hover {
+    opacity:1;
+}
+
+
+img {
+    z-index:1;
+}
 /* Shahn's CSS added 080916 */
 
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
