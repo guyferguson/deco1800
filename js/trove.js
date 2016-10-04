@@ -73,12 +73,12 @@
 
     function processImages(index, troveItem) {
 
-        var imgUrl = troveItem.identifier[0].value;
+		var imgUrl = troveItem.identifier[0].value;
 		var imgYear;
-	
+		var prevFound = found;	
 		//Determine if there is a date tag in JSON 
 		if (troveItem.hasOwnProperty('issued')) {
-        	imgYear = String(troveItem.issued);
+			imgYear = String(troveItem.issued);
 			//console.log("About to work with " + imgYear + " on " + imgUrl);
 			//console.log("converting imgYear into " + imgYear.substring(0,4));
 			if (Number(imgYear) > 1500 && Number(imgYear) < 2100)  {
@@ -94,120 +94,134 @@
 			//console.log("No year stored for " + imgUrl);
 			imgYear = "No Date";
 		}
-        var imageData = [];
+		var imageData = [];
 		var path;		  
 		
 		console.log("Working with " + imgUrl);
 
-			  if (imgUrl.indexOf(urlPatterns[0]) >= 0) { // flickr
-	  		      found++;
-	  			  addFlickrItem(imgUrl, troveItem, imgYear);
-	  	  
-			  } else if (imgUrl.indexOf(urlPatterns[1]) >= 0) { // nla.gov
+	  if (imgUrl.indexOf(urlPatterns[0]) >= 0) { // flickr
+		  found++;
+		  addFlickrItem(imgUrl, troveItem, imgYear);
+  
+	  } else if (imgUrl.indexOf(urlPatterns[1]) >= 0) { // nla.gov
+
+		  found++;
+		  imageData[0] = imgYear;
+		  imageData[1] =  imgUrl + "/representativeImage?wid=900"; // change ?wid=900 to scale the image
+		  imageData[2] =  troveItem.title;
+		  loadedImages.push(imageData);
+
+	  } else if (imgUrl.indexOf(urlPatterns[2]) >= 0) { //artsearch
+
+		   found++;
+		   imageData[0] = imgYear;
+		   imageData[1] =    "http://artsearch.nga.gov.au/IMAGES/LRG/" + getQueryVariable("IRN", imgUrl) + ".jpg";
+		  imageData[2] =  troveItem.title;
+		   loadedImages.push(imageData);
+
+	  } else if (imgUrl.indexOf(urlPatterns[3]) >= 0) { //recordsearch
+		   found++;
+		   imageData[0] = imgYear;
+		   imageData[1] =   "http://recordsearch.naa.gov.au/NAAMedia/ShowImage.asp?T=P&S=1&B=" + getQueryVariable("Number", imgUrl);
+		   imageData[2] =  troveItem.title;
+		   loadedImages.push(imageData);
+
+	  } else if (imgUrl.indexOf(urlPatterns[4]) >= 0) { //slsa
+		   found++;
+		   imageData[0] = imgYear;
+		   imageData[1] =    imgUrl.slice(0, imgUrl.length - 3) + "jpg";
+		   imageData[2] =  troveItem.title;
+		   loadedImages.push(imageData);
+	  } else if ((imgUrl.indexOf(urlPatterns[5]) >= 0) || (imgUrl.indexOf(urlPatterns[9]) >= 0) || (imgUrl.indexOf(urlPatterns[10]) >= 0) || (imgUrl.indexOf(urlPatterns[11]) >= 0) ) { // collections.museumvictoria.com.au AND hdl.handle.net  AND contentdm.lib.byu.edu AND http://acms.sl.nsw.gov.au/_DAMt/image/16/153/d7_29086t.jpg  021016 GF
+		  found++;
+		   imageData[0] = imgYear;
+		   imageData[1] = troveItem.identifier[1].value;
+		   imageData[2] = troveItem.title;
+		   loadedImages.push(imageData);
+
+	  } else if ((imgUrl.indexOf(urlPatterns[6]) >= 0)) { // archival-classic.sl.nsw.gov.au  
+		   found++;
+		   imageData[0] = imgYear;
+		   imageData[1] =   troveItem.identifier[0].value;
+		   imageData[2] =  troveItem.title;
+		   loadedImages.push(imageData);
+
+	  }  else if (imgUrl.indexOf(urlPatterns[7]) >= 0) { // handle.slv.vic.gov.au
+		  found++;
+			//Hackish way to determine if there is an item in identifier[1]
+			if (troveItem.identifier.length > 1) {
+	//			console.log("Using identifier[1]");
+				path = troveItem.identifier[1].value;
+			} else {
+	//			console.log("Using identifier[0]");
+				// This weill need changing, but no idea where to get the 3c2000 stuff from...
+				path = "http://cdn.loc.gov/service/pnp/cph/3c20000/3c24000/3c24100/" + imgUrl.substring(String(troveItem.identifier[0].value).length-7,String(troveItem.identifier[0].value).length);
+				console.log("Going to path " + path);
+			}
+		   imageData[0] = imgYear;
+		   imageData[1] =   path;
+		   imageData[2] =  troveItem.title;
+		   loadedImages.push(imageData);
+//	console.log("Loaded images = " + imageData[0] + " and url=" + imageData[1]);
+
+	  }  else if (imgUrl.indexOf(urlPatterns[8]) >= 0) { // hdl.loc.gov
 	  
-		   	      found++;
-	              imageData[0] = imgYear;
-				  imageData[1] =  imgUrl + "/representativeImage?wid=900"; // change ?wid=900 to scale the image
-				  imageData[2] =  troveItem.title;
-		 	      loadedImages.push(imageData);
-	  
-			  } else if (imgUrl.indexOf(urlPatterns[2]) >= 0) { //artsearch
-	  
-		   	       found++;
-	               imageData[0] = imgYear;
-		  		   imageData[1] =    "http://artsearch.nga.gov.au/IMAGES/LRG/" + getQueryVariable("IRN", imgUrl) + ".jpg";
-				  imageData[2] =  troveItem.title;
-				   loadedImages.push(imageData);
-	    
-			  } else if (imgUrl.indexOf(urlPatterns[3]) >= 0) { //recordsearch
-	  
-			  	   found++;
-	               imageData[0] = imgYear;
-		  		   imageData[1] =   "http://recordsearch.naa.gov.au/NAAMedia/ShowImage.asp?T=P&S=1&B=" + getQueryVariable("Number", imgUrl);
-				   imageData[2] =  troveItem.title;
-				   loadedImages.push(imageData);
-	  
-			  } else if (imgUrl.indexOf(urlPatterns[4]) >= 0) { //slsa
-	  
-				   found++;
-	  			   imageData[0] = imgYear;
-		  		   imageData[1] =    imgUrl.slice(0, imgUrl.length - 3) + "jpg";
-				   imageData[2] =  troveItem.title;
-				   loadedImages.push(imageData);
-			  } else if ((imgUrl.indexOf(urlPatterns[5]) >= 0) || (imgUrl.indexOf(urlPatterns[9]) >= 0) || (imgUrl.indexOf(urlPatterns[10]) >= 0) || (imgUrl.indexOf(urlPatterns[11]) >= 0) ) { // collections.museumvictoria.com.au AND hdl.handle.net  AND contentdm.lib.byu.edu AND http://acms.sl.nsw.gov.au/_DAMt/image/16/153/d7_29086t.jpg  021016 GF
-	  
-				  found++;
-				   imageData[0] = imgYear;
-		  		   imageData[1] = troveItem.identifier[1].value;
-				   imageData[2] = troveItem.title;
-				   loadedImages.push(imageData);
-	  
-			  } else if ((imgUrl.indexOf(urlPatterns[6]) >= 0)) { // archival-classic.sl.nsw.gov.au  
-	  
-				   found++;
-			   	   imageData[0] = imgYear;
-		  		   imageData[1] =   troveItem.identifier[0].value;
-				   imageData[2] =  troveItem.title;
-				   loadedImages.push(imageData);
-	  
-			  }  else if (imgUrl.indexOf(urlPatterns[7]) >= 0) { // handle.slv.vic.gov.au
-	  
-				  found++;
-				 	//Hackish way to determine if there is an item in identifier[1]
-	  				if (troveItem.identifier.length > 1) {
-			//			console.log("Using identifier[1]");
-						path = troveItem.identifier[1].value;
-					} else {
-			//			console.log("Using identifier[0]");
-						// This weill need changing, but no idea where to get the 3c2000 stuff from...
-						path = "http://cdn.loc.gov/service/pnp/cph/3c20000/3c24000/3c24100/" + imgUrl.substring(String(troveItem.identifier[0].value).length-7,String(troveItem.identifier[0].value).length);
-						console.log("Going to path " + path);
-					}
-				   imageData[0] = imgYear;
-		  		   imageData[1] =   path;
-				   imageData[2] =  troveItem.title;
-				   loadedImages.push(imageData);
-		//	console.log("Loaded images = " + imageData[0] + " and url=" + imageData[1]);
-	  
-			  }  else if (imgUrl.indexOf(urlPatterns[8]) >= 0) { // hdl.loc.gov
-	  
-				  found++;
-	//			  console.log(troveItem  );
+			found++;
+	//		  console.log(troveItem  );
 				//  console.log("FOUND AN HDL LOC GOV: ");
 		//		  console.log(troveItem.identifier[1].value);
-					if (troveItem.identifier.length > 1) {
+			if (troveItem.identifier.length > 1) {
 						path = troveItem.identifier[1].value;
-					} else {
-				  path = "http://cdn.loc.gov/service/pnp/cph/3c20000/3c24000/3c24100/" + imgUrl.substring(String(troveItem.identifier[0].value).length-7,String(troveItem.identifier[0].value).length) + "r.jpg";
-					}
+			} else {
+			path = "http://cdn.loc.gov/service/pnp/cph/3c20000/3c24000/3c24100/" + imgUrl.substring(String(troveItem.identifier[0].value).length-7,String(troveItem.identifier[0].value).length) + "r.jpg";
+			}
 		//				console.log("Going to path " + path);
-				   imageData[0] = imgYear;
-		  		   imageData[1] =   path;
-				   imageData[2] =  troveItem.title;
-				   loadedImages.push(imageData);
+			imageData[0] = imgYear;
+		  	imageData[1] =   path;
+			imageData[2] =  troveItem.title;
+			loadedImages.push(imageData);
 		//	console.log("Loaded images = " + imageData[0] + " and url=" + imageData[1]);
 	  
-			  }  else if ((imgUrl.indexOf(urlPatterns[12]) >= 0)) { // agallica2.bnf.fr  GF 021016
-	  
-				   found++;
-			   	   imageData[0] = imgYear;
-		  		   imageData[1] =   troveItem.identifier[0].value + "/f1.highres";
-				   imageData[2] =  troveItem.title;
-				   loadedImages.push(imageData);
-	  
-			  } 
-	  
-			  else { // Could not reliably load image for item
-	  
-				  // UNCOMMENT FOR DEBUG:
-	  
-			 console.log(found + "Not available: " + imgUrl);
-	  
-			  }
-	//	}
+	  }  else if ((imgUrl.indexOf(urlPatterns[12]) >= 0)) { // agallica2.bnf.fr  GF 021016  
+		   found++;
+		   imageData[0] = imgYear;
+		   imageData[1] =   troveItem.identifier[0].value + "/f1.highres";
+		   imageData[2] =  troveItem.title;
+		   loadedImages.push(imageData);
 
+	  }  else { // Could not reliably load image for item
+	  
+				  // UNCOMMENT FOR DEBUG:		
+           console.log(found + "Not available: " + imgUrl);
+	  
+	  }
+	  
+ 	/*  if (found>prevFound) {   //Have we just added an image?
+			var testData = [];
+	  		var newData = [];
+	  		var img = new Image();
+			testData= loadedImages.pop();
+			newData[0] = testData[0];
+			newData[1] = testData[1];
+			newData[2] = testData[2];
+			console.log(testData);
+			img.src = testData[1];
+			
+			img.onload = function () {
+   				//console.info("Image loaded !" + image.src);
+				//Push array back into our good list
+				console.log ("Adding back " + testData);
+				loadedImages.push(newData);
+				console.log("Array (refreshed) holds " + loadedImages.length + " images");
+   			};
+			img.onerror = function () {
+   				console.error("Cannot load image " + img.src);
+   				// Don't bother putting it back in array
+			};
+	  } */ 
     // TODO turn SORT back on - temp off for testing   
 	 loadedImages.sort(sortFunction);
+	 console.log("Array holds " + loadedImages.length + " images");
     }
 
 
@@ -244,13 +258,8 @@ function sortFunction(a, b) {
 				imageData[1] = flickr_image_url;
 				imageData[2] =  troveItem.title;
 				loadedImages.push(imageData);
-			
             }
-
         });
-
-
-
     }
 
 
@@ -258,6 +267,7 @@ function sortFunction(a, b) {
     function printImages() {
 
 		// Print out all images
+        console.log("Outputting images now");
         console.log(loadedImages);
 		
 		// Create an empty html tag
