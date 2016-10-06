@@ -13,7 +13,7 @@
 	//console.log("wait flickr Found = " + found+ "loadedImagesLength = " + loadedImages.length);
 
 	 	if(found === loadedImages.length) {
-		 $("p.lead").text("Drag any image across to your tree-->");
+		//	$("p.lead").text("Drag any image across to your tree-->");
      //   $("#output").append("<h3>Image Search Results</h3>");
 			printImages();
 		 // Hide all sets of 'img6' divs except the first one
@@ -279,8 +279,7 @@ function sortFunction(a, b) {
             var image = new Image();
 			var spn = $("<span>", {"class": "text"});
 			$(spn).text(loadedImages[i][0]);
-			var wrapper =  $("<a>", {"class": "draggable wrapper", "id":loadedImages[i][3]} ).append(spn);
-			//$(wrapper).addClass("draggable");
+			var wrapper =  $("<a>", {"class": "wrapper", "id":loadedImages[i][3]} ).append(spn);
 			$(wrapper).attr("draggable","true");
 			$(wrapper).attr("ondragstart","drag(event)");
 			console.log(wrapper);
@@ -295,7 +294,7 @@ function sortFunction(a, b) {
 
             image.alt = loadedImages[i][2];
 		
-			//image.id = "draggable";	
+			image.id = "draggable";	
 			
 			image.title = loadedImages[i][0];
 			

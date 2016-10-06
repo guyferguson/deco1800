@@ -14,7 +14,7 @@
 <script>
   $( function() {
     $( ".draggable" ).draggable();
-    $( ".droppable" ).droppable({
+    $( "#droppable" ).droppable({
       drop: function( event, ui ) {
         $( this )
           .addClass( "ui-state-highlight" )
@@ -27,13 +27,13 @@
 
 <style>
 
-.todrag {
-	width: 200px;
-	height: 200px;
+.ui-widget-content {
+	width: 180px;
+	height: 180px;
 	padding: 0.5em;
 	margin: 10px 10px 10px 0;
 }
-.droppable {
+#droppable {
 	width: 200px;
 	height: 200px;
 	padding: 0.5em;
@@ -53,7 +53,7 @@
 <body id="bootstrap-overrides">
 <div class="container-fluid">
   <div class="row">
-    <div id= "right_container" class="col-sm-4">
+    <div id= "right_container" class="col-sm-3">
       <div class="container-fluid">
         <div class="row">
           <p class = "lead">Enter your surname here:</p>
@@ -66,52 +66,88 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-8"> 
+    <div class="col-sm-9"> 
       <!--          			<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>   -->
-      <section>
-        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-      </section>
-      <section>
-        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-      </section>
-      <section>
-        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="container">  
+        <div class="child" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+        <div class="child" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+        <div class="child" id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+        <div class="child" id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+        <div class="child" id="div5" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+        <div class="child" id="div6" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+        <div class="child" id="div7" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+        <div class="child" id="div8" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+  	</div>
+    <div class="container"> 
+        <div class="child" id="div9" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+        <div class="child" id="div10" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+        <div class="child" id="div11" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+        <div class="child" id="div12" ondrop="drop(event)" ondragover="allowDrop(event)"><center>Drag and Drop Image Here</center></div>
+	</div>
+	
+	<div class="container">
+        <div class="child">
           <form action="/upload" class="dropzone" id="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple/>
             </div>
           </form>
         </div>
-        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="child">
           <form action="/upload" class="dropzone" id="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple/>
             </div>
           </form>
         </div>
-      </section>
-      <section>
-        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+  </div>
+
+
+  
+  
+  <div class="container">
+        <div class="child">
           <form action="/upload" class="dropzone" id="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple/>
             </div>
           </form>
         </div>
-      </section>
+    </div>
+        
+<!-- Image Slider-->        
+
+  <button class="next">Next</button>
+  <button class="prev">Previous</button>
+  <div class="image_slider">
+    <div style="display: inline-block;">
+      <img src="Images/tree_index.jpeg"/>
+    </div>
+    <div>
+     <img src="Images/tree_index1.jpeg"/>
+    </div>
+    <div>
+      <img src="Images/tree_index2.jpeg"/>
+    </div>
+    <div>
+      <img src="Images/tree_index3.jpeg"/>
+    </div>
+    <div>
+      <img src="Images/tree_index4.jpeg"/>
+    </div>
+    <div>
+      <img src="Images/tree_index5.jpeg"/>
+    </div>
+  </div>
+
+        
     </div>
   </div>
 </div>
+</body>
+
+
+
 <nav class="navbar navbar-fixed-bottom" id="navbar">
 <div class="container-fluid">
   <ul class="nav navbar-inverse navbar-nav">
