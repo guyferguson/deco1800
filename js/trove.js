@@ -4,159 +4,109 @@
 //
 //         <script src="js/trove.js">
 
-//	GLOBALS
- 	   	var loadedImages = [];
-		var newHtml = $('');
-		var wrapper;
-		var image;
-		var spn;
-		var  j;
-       	var urlPatterns = ["flickr.com", "nla.gov.au", "artsearch.nga.gov.au", "recordsearch.naa.gov.au", "images.slsa.sa.gov.au", "collections.museumvictoria.com.au","archival-classic.sl.nsw.gov.au","handle.slv.vic.gov.au","hdl.loc.gov", "hdl.handle.net", "contentdm.lib.byu.edu", "cms.sl.nsw.gov.au", "gallica2.bnf.fr"];
-       	var found = 0;
-		var wins = 0;   
-		var loses = -1;		
-// ========================================================================================================
-		
-  (function($){  
-  
-	   	function succeed() {
-		    spn = $("<span>", {"class": "text"});
-			//console.log(loadedImages);
-			$(spn).text(loadedImages[j][0]);
-			wrapper =  $("<a>", {"class": "wrapper", "id":loadedImages[j][3]} ).append(spn);
-			$(wrapper).attr("draggable","true");
-			$(wrapper).attr("ondragstart","drag(event)");
-		    if ((j % 6) === 0) {
-					//Commence by adding what we have to #output
-					console.log("Appending! j="+j);
-					$("#output").append(newHtml);
-					newHtml=$("<div class = 'img6'>");
-					//Add the first image to this img6 div
-					newHtml.append(wrapper.append(image));
-					 
-			} else {
-					newHtml.append(wrapper.append(image));
-					 
-			}
-			console.log("Image " + image.src + " loaded");
-		    console.log("image loaded correctly..mutex=" + mutex); 
-			mutex = 1;
-		    console.log("about to exit success..mutex=" + mutex);
-		  }
+// ==================================================================================================================
+//      GLOBALS
+// ==================================================================================================================
+	var loadedImages = [];
+	var newHtml = $('');
+	var wrapper;
+	var image;
+	var imageFinal;
+	var spn;
+	var  i,j, currImg = 0;
+	var counter=0;
+	var successCounter=0;
+			 
+       var urlPatterns = ["flickr.com", "nla.gov.au", "artsearch.nga.gov.au", "recordsearch.naa.gov.au", "images.slsa.sa.gov.au", "collections.museumvictoria.com.au","archival-classic.sl.nsw.gov.au","handle.slv.vic.gov.au","hdl.loc.gov", "hdl.handle.net", "contentdm.lib.byu.edu", "cms.sl.nsw.gov.au", "gallica2.bnf.fr"];
+       var found = 0;
 
-	 function fail() {
-		  console.log("image did not load..mutex=" + mutex); 
-		  newHtml = $("<p>bad pic!</p>");
-		  image = '';
-		  wrapper = $('');
-		  mutex = 1;
-		  }
-		  
-	function buildImageTag() {
+(function($){
+
+	function buildImageHtml() {
+	//console.log("wait flickr Found = " + found+ "loadedImagesLength = " + loadedImages.length);
+for (var ii=0;ii<loadedImages.length;ii++) {
+console.log(loadedImages[ii][1]);}
 	 	if(found === loadedImages.length) {
-			// Change the header above search box.		
-  			$("p.lead").css("font-size", "18px");
-			$("p.lead").text("Drag any image across to your tree-->");
-		//	mutex = 1;  //Set mutex to TRUE on first pass
-	    	j = 0;
-			for (var i = 0; i < loadedImages.length; i++) {
-				
-					image = new Image();
-					console.log("i = " + 1);
-					//console.log(wrapper);
-					image.src = loadedImages[i][1];
-					image.style.verticalAlign = "top";
-					image.className = "ui-widget-content";
-					image.alt = loadedImages[i][2];
-					image.title = loadedImages[i][0];
-					console.log("About to test load");
-					 spn = $("<span>", {"class": "text"});
-					//console.log(loadedImages);
-					$(spn).text(loadedImages[j][0]);
-					wrapper =  $("<a>", {"class": "wrapper", "id":loadedImages[j][3]} ).append(spn);
-					$(wrapper).attr("draggable","true");
-					$(wrapper).attr("ondragstart","drag(event)");
-					if ((j % 6) === 0) {
-							//Commence by adding what we have to #output
-							console.log("Appending! j="+j);
-							$("#output").append(newHtml);
-							newHtml=$("<div class = 'img6'>");
-							//Add the first image to this img6 div
-							newHtml.append(wrapper.append(image));
-					} else {
-					newHtml.append(wrapper.append(image));
-					 
-					}
-					//console.log("Passed back from succeed..mutex=" + mutex);   
-					//	image.onerror =  fail;
-					//console.log("Passed back from fail..mutex=" + mutex);
-					j+=1;
 		
-				console.log("hmm i am firing heaps i think");
-			}
-		   // Hide all sets of 'img6' divs except the first one
-		   $('.img6.test:not(:first)').css('display', 'none');
-		   $('#smart-paginator').smartpaginator({ totalrecords: Math.round(loadedImages.length / 6)-1, recordsperpage: 1, length: 5, controlsalways:true, datacontainer: 'output', dataelement: '.img6', initval: 0, next: '>', prev: '<', first: '<<', last:'>>', theme: 'green', display: 'single'    });
-   
+   $("p.lead").css("font-size", "18px");
+
+			$("p.lead").text("Drag any image across to your tree-->");
+			
+     //   $("#output").append("<h3>Image Search Results</h3>");
+	  //  j = 0;
+i = 0;
+		for (i = 0; i < loadedImages.length; i++) {
+			image = new Image();
+			console.log("i = " + i);
+			//console.log(wrapper);
+            image.src = loadedImages[i][1];
+       	   // image.style.verticalAlign = "top";
+           // image.className = "ui-widget-content";
+            image.alt = loadedImages[i][2];
+	   	    image.title = loadedImages[i][0];
+			console.log("About to test load");
+
+              console.log("Counter = "+ counter);
+
+	//$("<img src='"+image.src+"' />").load(succeed(i));
+	//$("<img src='"+image.src+"' />").error(fail(loadedImages[i]));
+			console.log("Just jQueried...");
+		//successful load
+
+		//error 
+//	});
+            image.onload = succeed(i);   
+			image.onerror =  fail(i);
+			
+	//		image.onload = succeed(loadedImages[i]);   
+//			image.onerror =  fail(loadedImages[i]);
+			
+			//j+=1;
+		}
+		 // Hide all sets of 'img6' divs except the first one
+ 
 		} else {
-			setTimeout(buildImageTag, 250);
+			setTimeout(buildImageHtml, 250);
 		}
 	}
 
-// ==================================================================================================================
-//   Executing Code begins here
-// ==================================================================================================================
+  
 
     $("form#searchTrove").submit(function(event) {
-	loadedImages.length = 0;  //Clear the array
-	found = 0;
+		loadedImages.length = 0;  //Clear the array
+		found = 0;
+     //	console.log("startSearch Found = " + found);
 
-	event.preventDefault();
-	//get input values
-	var searchTerm = $("#searchTerm").val().trim();
+        event.preventDefault();
+        //get input values
+        var searchTerm = $("#searchTerm").val().trim();
 
-	searchTerm = searchTerm.replace(/ /g, "%20");
+        searchTerm = searchTerm.replace(/ /g, "%20");
 
-	searchTerm = searchTerm + "%20portrait";    //200816 FFT addition to return human images
+        searchTerm = searchTerm + "%20portrait";    //200816 FFT addition to return human images
 
-	var apiKey = "bjta6lbqejkmpk9k";
-	
-	//create search query
+        var apiKey = "bjta6lbqejkmpk9k";
+		
+        //create search query
 
-	var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&l-availability=y%2Ff&encoding=json&zone=picture" + "&sortby=relevance&n=100&q=" + searchTerm + "&callback=?";
+        var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&l-availability=y%2Ff&encoding=json&zone=picture" + "&sortby=relevance&n=100&q=" + searchTerm + "&callback=?";
 
-	//get the JSON information we need to display the images
+        //get the JSON information we need to display the images
 
-	$.getJSON(url, function(data) {
+        $.getJSON(url, function(data) {
 
             $('#output').empty();
 
-            //console.log(data);
+            console.log(data);
 
-            $.each(data.response.zone[0].records.work, processImages);       // Creates the array of arrays, 'loadedImages'
-console.log("about to go to wins loop");
-			while (wins < 8) {
-				image = new Image();
-				console.log("about to test wins>loses " + wins);
-				while (wins > loses) {
-					console.log("about to test onload " + wins);
-					image.src = loadedImages[wins][1];
-					loses+=1;
-					image.onload = function () {
-						console.log("wins = " + wins);
-						wins++;
-					};
-				}
-			}
-	  		buildImageTag(); 												// Construct the html pagination, check if images load
+            $.each(data.response.zone[0].records.work, processImages);
+
+	  		 buildImageHtml(); // Waits for the flickr images to load
 
         });
 
     });
 
-// ==================================================================================================================
-//   Executing Code ends here
-// ==================================================================================================================
 
 
     /*
@@ -235,11 +185,16 @@ console.log("about to go to wins loop");
 				   imageData[2] =  troveItem.title;
 				   imageData[3] =  troveItem.id;
 				   loadedImages.push(imageData);
-			  } else if ((imgUrl.indexOf(urlPatterns[5]) >= 0) || (imgUrl.indexOf(urlPatterns[9]) >= 0) || (imgUrl.indexOf(urlPatterns[10]) >= 0) || (imgUrl.indexOf(urlPatterns[11]) >= 0) ) { // collections.museumvictoria.com.au AND hdl.handle.net  AND contentdm.lib.byu.edu AND http://acms.sl.nsw.gov.au/_DAMt/image/16/153/d7_29086t.jpg  021016 GF
+			  } else if ((imgUrl.indexOf(urlPatterns[5]) >= 0) || (imgUrl.indexOf(urlPatterns[9]) >= 0) || (imgUrl.indexOf(urlPatterns[10]) >= 0) || (imgUrl.indexOf(urlPatterns[11]) >= 0) ) { // collections.museumvictoria.com.au AND hdl.handle.net  AND contentdm.lib.byu.edu AND http://acms.sl.nsw.gov.au 021016 GF
 	  
 				  found++;
+				  console.log(imgUrl);
 				   imageData[0] = imgYear;
-		  		   imageData[1] = troveItem.identifier[1].value;
+				   if (troveItem.identifier.length > 1) {
+		  		   		imageData[1] = troveItem.identifier[1].value;
+					} else {                // Needed this for surnames PETERS and FITZPATRICK - no 2nd identifier on hdl.handle.net urls
+						imageData[1] = troveItem.identifier[0].value;
+					}
 				   imageData[2] = troveItem.title;
 				   imageData[3] =  troveItem.id;
 				   loadedImages.push(imageData);
@@ -391,3 +346,58 @@ function sortFunction(a, b) {
 
     }(jQuery));
 
+function succeed(currImg) {
+	imageFinal = new Image();
+	console.log("About to loko in loadedImages at " + currImg);
+	imageFinal.src = loadedImages[currImg][1];
+	imageFinal.style.verticalAlign = "top";
+	imageFinal.className = "ui-widget-content";
+	imageFinal.alt = loadedImages[currImg][2];
+	imageFinal.title = loadedImages[currImg][0];
+	spn = $("<span>", {"class": "text"});
+	console.log("Here with i = " + i + " and counter = " + counter);
+	//console.log(arrayImg);
+	$(spn).text(loadedImages[currImg][0]);
+	wrapper =  $("<a>", {"class": "wrapper", "id":loadedImages[currImg][3]} ).append(spn);
+	$(wrapper).attr("draggable","true");
+	$(wrapper).attr("ondragstart","drag(event)");
+	if ((successCounter % 6) === 0) {
+		//Commence by adding what we have to #output
+		$("#output").append(newHtml);
+		newHtml=$("<div class = 'img6'>");
+		//Add the first image to this img6 div
+		newHtml.append(wrapper.append(imageFinal));
+		
+	} else {
+		newHtml.append(wrapper.append(imageFinal));
+		
+	}
+	counter+=1;
+	successCounter+=1;
+	console.log("Image " + loadedImages[currImg][1] + " loaded");
+	if (counter >= 2*loadedImages.length-1) {
+			console.log("Call final to turn on pagination, hide images etc");
+		final();
+	}
+	//console.log("Returning from succeed function");
+}
+
+    
+	 function fail(arrayImg) {
+		  console.log("image did not load: src=" + loadedImages[arrayImg][1]); 
+		  //newHtml = $("<p>bad pic!</p>");
+              console.log("fail Counter = "+ counter + " and src = " + arrayImg[1]);
+		  image = '';
+		  wrapper = $('');
+            counter+=1;
+			if (counter >= 2*loadedImages.length - 1) {  //Not sure why I had to add the '- 1'..gf 071016
+			console.log("Call final to turn on pagination, hide images etc");
+				final();
+			}
+		  }
+		  
+function final() {
+	$('.img6.test:not(:first)').css('display', 'none');
+	console.log("Here fires smartPaginator!");
+	$('#smart-paginator').smartpaginator({ totalrecords: Math.round(loadedImages.length / 6)-1, recordsperpage: 1, length: 5, controlsalways:true, datacontainer: 'output', dataelement: '.img6', initval: 0, next: '>', prev: '<', first: '<<', last:'>>', theme: 'green', display: 'single'    });
+}

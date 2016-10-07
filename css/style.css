@@ -326,7 +326,9 @@ background-color: #ff9800;
 	-moz-box-sizing:    border-box;
 	box-sizing:         border-box;
 }
-
+body, html {
+	height: 100% !important;
+}
 article,
 aside,
 details,
