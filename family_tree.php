@@ -13,7 +13,7 @@
 <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
 <script>
   $( function() {
-    $( ".draggable" ).draggable();
+    $( "#draggable" ).draggable();
     $( "#droppable" ).droppable({
       drop: function( event, ui ) {
         $( this )
@@ -86,14 +86,14 @@
 	</div>
 	
 	<div class="container">
-        <div class="child">
+        <div class="child" id="div13">
           <form action="/upload" class="dropzone" id="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple/>
             </div>
           </form>
         </div>
-        <div class="child">
+        <div class="child" id="div14">
           <form action="/upload" class="dropzone" id="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple/>
@@ -106,7 +106,7 @@
   
   
   <div class="container">
-        <div class="child">
+        <div class="child" id="div15">
           <form action="/upload" class="dropzone" id="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple/>

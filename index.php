@@ -17,14 +17,30 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
-  
-	<div class="container-fluid">
-  
-  
-  		<div class="row">
- 			<div id= "right_container" class="col-sm-12">
- 					
+  <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+  			<div class="container-fluid">
+    			<div class="navbar-header">
+        			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          				<span class="icon-bar"></span>
+          				<span class="icon-bar"></span>
+          				<span class="icon-bar"></span>
+      				</button>
+      				<a class="navbar-brand" href="#">Strengthen Your DNA</a>
+    			</div>
+    		<div>
+      		<div class="collapse navbar-collapse" id="myNavbar">
+        		<ul class="nav navbar-nav">
+          			<li><a href="#section1">Home</a></li>
+          			<li><a href="#section2">About</a></li>
+          			<li><a href="#section3">How to:</a></li>
+            	</ul>
+      		</div>
+    		</div>
+  		</nav>
+
+	<div id="section1" class="container-fluid">
 <!-- Trigger the modal with a SIGN IN button -->
 			<button id= "signbutton" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Sign In</button>
 
@@ -109,29 +125,17 @@
 		</div>
 		</div>
 
-
-		</div>
-  		</div>
-		</div>
-		</div>
-
-
-
-		<nav class="navbar navbar-fixed-bottom">
- 			<div class="container-fluid">
-    		<ul class="nav navbar-inverse navbar-nav">
-    			<li class="active"><a class="navbar-brand" href="index.php">Strengthen My DNA</a>
-				<li><a href="family_tree.php">Family Tree</a></li>  
-      			<li><a href="about.php">About</a></li> 
-    		</ul>
-		<ul class="nav navbar-nav navbar-right">
-      			<li><a href="index.php"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-      			<li><a href="index.php"><span class="glyphicon glyphicon-log-in"></span> Sign Out</a></li>
-    		</ul>
-    		</nav>
-    		</div>
- 
-  
+  	</div>
+	
+	<div id="section2" class="container-fluid">
+  		<h1>About</h1>
+  	</div>
+	
+	<div id="section3" class="container-fluid">
+  		<h1>How to:</h1>
+  	</div>
+</body>
+   
 <!--
     	<div class="row-fluid">
     		<div class="col-xs-2">

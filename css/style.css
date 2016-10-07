@@ -24,6 +24,10 @@ Light-orange: #FFB176
 */
 
 /* Guy's CSS for set of 6 images returned from Trove  */
+#searchTerm {
+	width: 50%;
+	margin-right:10%
+}
 #output {
 	margin-top:15px;
 } 
@@ -54,7 +58,6 @@ Light-orange: #FFB176
 .text:hover {
     opacity:1;
 }
-
 
 img {
     z-index:1;
@@ -96,10 +99,6 @@ body {
   margin-bottom: 0px;
 }
 
-.container{
-	padding-left: 100px;
-	padding-right: 100px;
-}
 
 .footer {
   position: absolute;
@@ -120,6 +119,89 @@ body {
     text-align: center;
     z-index: 100;
     background-color: white;
+}
+
+#div1{
+	position: absolute;
+	left: 10%;
+	margin-top: 20%;
+}
+#div2{
+	position: absolute;
+	left: 20%;
+	margin-top: 20%;
+}
+#div3{
+	position: absolute;
+	left: 30%;
+	margin-top: 20%;
+}
+#div4{
+	position: absolute;
+	left: 40%;
+	margin-top: 20%;
+}
+#div5{
+	position: absolute;
+	left: 50%;
+	margin-top: 20%;
+}
+#div6{
+	position: absolute;
+	left: 60%;
+	margin-top: 20%;
+}
+#div7{
+	position: absolute;
+	left: 70%;
+	margin-top: 20%;
+}
+#div8{
+	position: absolute;
+	left: 80%;
+	margin-top: 20%;
+}
+#div9{
+	position: absolute;
+	left: 10%;
+	margin-top: 40%;
+}
+#div10{
+	position: absolute;
+	left: 33%;
+	margin-top: 40%;
+}
+#div11{
+	position: absolute;
+	left: 56%;
+	margin-top: 40%;
+}
+#div12{
+	position: absolute;
+	left: 80%;
+	margin-top: 40%;
+}
+
+#div13{
+	position: absolute;
+	left: 20%;
+	margin-top: 60%;
+	width: 200px;
+	height: 200px;
+}
+#div14{
+	position: absolute;
+	left: 60%;
+	margin-top: 60%;
+	width: 200px;
+	height: 200px;
+}
+#div15{
+	position: absolute;
+	left: 40%;
+	margin-top: 90%;
+	width: 200px;
+	height: 200px;
 }
 
 .bosom-none {
@@ -153,17 +235,18 @@ body {
 .image_slider img {
   width: 100%;
   height: auto;
+  background-size: cover;
 }
 
 /* Index Page CSS 04/10/2016*/
 
 button {
-  position: absolute;
   z-index: 100;
 }
 
 .next {
   right: 5px;
+  position: absolute;
 }
 
 .prev {
@@ -176,13 +259,25 @@ body {
 
 #section1 {
 padding-top:50px;
-height:500px; 
-background-image: url("LOGO.jpg");
+height:1300px; 
+background-image: url("../Images/LOGO.jpg");
+background-repeat: no-repeat;
+background-size: cover;
 }
-  #section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
-  #section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
-  #section41 {padding-top:50px;height:500px;color: #fff; background-color: #00bcd4;}
-  #section42 {padding-top:50px;height:500px;color: #fff; background-color: #009688;}
+
+#section2 {
+padding-top:50px;
+height:500px;
+color: #fff; 
+background-color: #ffffff;
+}
+  
+#section3 {
+padding-top:50px;
+height:500px;
+color: #fff; 
+background-color: #ff9800;
+}
 
 /**
  * Table of Contents:
