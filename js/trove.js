@@ -13,19 +13,27 @@
 	var image;
 	var imageFinal;
 	var spn;
-	var  i,j, currImg = 0;
+	var  i, currImg = 0;
 	var counter=0;
 	var successCounter=0;
 			 
        var urlPatterns = ["flickr.com", "nla.gov.au", "artsearch.nga.gov.au", "recordsearch.naa.gov.au", "images.slsa.sa.gov.au", "collections.museumvictoria.com.au","archival-classic.sl.nsw.gov.au","handle.slv.vic.gov.au","hdl.loc.gov", "hdl.handle.net", "contentdm.lib.byu.edu", "cms.sl.nsw.gov.au", "gallica2.bnf.fr"];
        var found = 0;
 
+	   
+function loadImage(index) {
+	$("<img src='"+image.src+"' />").load(function(){		
+		succeed(index);
+	}).error(function(){		
+		fail(index);
+	});
+}
+	   
 (function($){
 
 	function buildImageHtml() {
 	//console.log("wait flickr Found = " + found+ "loadedImagesLength = " + loadedImages.length);
-for (var ii=0;ii<loadedImages.length;ii++) {
-console.log(loadedImages[ii][1]);}
+
 	 	if(found === loadedImages.length) {
 		
    $("p.lead").css("font-size", "18px");
@@ -46,17 +54,13 @@ i = 0;
 	   	    image.title = loadedImages[i][0];
 			console.log("About to test load");
 
-              console.log("Counter = "+ counter);
-
-	//$("<img src='"+image.src+"' />").load(succeed(i));
-	//$("<img src='"+image.src+"' />").error(fail(loadedImages[i]));
-			console.log("Just jQueried...");
-		//successful load
-
-		//error 
-//	});
-            image.onload = succeed(i);   
-			image.onerror =  fail(i);
+              console.log("Counter = "+ counter);   //This shows us that even at the end of this loop, tnhere has not been one successfully returned call to 'Succeed()'
+			
+			loadImage(i);
+	
+			
+            //image.onload = succeed(i);   
+			//image.onerror =  fail(i);
 			
 	//		image.onload = succeed(loadedImages[i]);   
 //			image.onerror =  fail(loadedImages[i]);
@@ -75,6 +79,8 @@ i = 0;
     $("form#searchTrove").submit(function(event) {
 		loadedImages.length = 0;  //Clear the array
 		found = 0;
+		successCounter=0;
+		counter=0;
      //	console.log("startSearch Found = " + found);
 
         event.preventDefault();
@@ -89,7 +95,7 @@ i = 0;
 		
         //create search query
 
-        var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&l-availability=y%2Ff&encoding=json&zone=picture" + "&sortby=relevance&n=100&q=" + searchTerm + "&callback=?";
+        var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&l-availability=y%2Ff&encoding=json&zone=picture" + "&sortby=relevance&n=300&q=" + searchTerm + "&callback=?";
 
         //get the JSON information we need to display the images
 
@@ -364,7 +370,12 @@ function succeed(currImg) {
 	if ((successCounter % 6) === 0) {
 		//Commence by adding what we have to #output
 		$("#output").append(newHtml);
-		newHtml=$("<div class = 'img6'>");
+		if (successCounter >=6) {
+			newHtml=$("<div class = 'img6'>");
+			$(newHtml).css('display', 'none');
+		} else {
+			newHtml=$("<div class = 'img6'>");
+		}
 		//Add the first image to this img6 div
 		newHtml.append(wrapper.append(imageFinal));
 		
@@ -375,7 +386,7 @@ function succeed(currImg) {
 	counter+=1;
 	successCounter+=1;
 	console.log("Image " + loadedImages[currImg][1] + " loaded");
-	if (counter >= 2*loadedImages.length-1) {
+	if (counter >= loadedImages.length-1) {
 			console.log("Call final to turn on pagination, hide images etc");
 		final();
 	}
@@ -384,13 +395,13 @@ function succeed(currImg) {
 
     
 	 function fail(arrayImg) {
-		  console.log("image did not load: src=" + loadedImages[arrayImg][1]); 
+		  console.log("image did not load: src=" + this.src); 
 		  //newHtml = $("<p>bad pic!</p>");
               console.log("fail Counter = "+ counter + " and src = " + arrayImg[1]);
 		  image = '';
 		  wrapper = $('');
             counter+=1;
-			if (counter >= 2*loadedImages.length - 1) {  //Not sure why I had to add the '- 1'..gf 071016
+			if (counter >= loadedImages.length - 1) {  //Not sure why I had to add the '- 1'..gf 071016
 			console.log("Call final to turn on pagination, hide images etc");
 				final();
 			}
@@ -399,5 +410,5 @@ function succeed(currImg) {
 function final() {
 	$('.img6.test:not(:first)').css('display', 'none');
 	console.log("Here fires smartPaginator!");
-	$('#smart-paginator').smartpaginator({ totalrecords: Math.round(loadedImages.length / 6)-1, recordsperpage: 1, length: 5, controlsalways:true, datacontainer: 'output', dataelement: '.img6', initval: 0, next: '>', prev: '<', first: '<<', last:'>>', theme: 'green', display: 'single'    });
+	$('#smart-paginator').smartpaginator({ totalrecords: Math.round(successCounter / 6)-1, recordsperpage: 1, length: 5, controlsalways:true, datacontainer: 'output', dataelement: '.img6', initval: 0, next: '>', prev: '<', first: '<<', last:'>>', theme: 'green', display: 'single'    });
 }

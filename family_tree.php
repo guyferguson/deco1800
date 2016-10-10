@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="js/google_jquery.min.js"></script>
+<link rel="stylesheet" href="css/jquery-ui.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
-<script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<!--<script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>-->
 <script src="js/smartpaginator.js" type="text/javascript"></script>
 <link href="css/smartpaginator.css" rel="stylesheet" type="text/css" />
-<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<!--<script src="js/jquery-ui-1.9.2.custom.min.js"></script> -->
 <script>
   $( function() {
     $( "#draggable" ).draggable();
@@ -87,14 +87,14 @@
 	
 	<div class="container">
         <div class="child" id="div13">
-          <form action="/upload" class="dropzone" id="dropzone">
+          <form action="upload.php" class="dropzone" id="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple/>
             </div>
           </form>
         </div>
         <div class="child" id="div14">
-          <form action="/upload" class="dropzone" id="dropzone">
+          <form action="upload.php" class="dropzone" id="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple/>
             </div>
@@ -102,12 +102,11 @@
         </div>
   </div>
 
-
-  
+ 
   
   <div class="container">
         <div class="child" id="div15">
-          <form action="/upload" class="dropzone" id="dropzone">
+          <form action="upload.php" class="dropzone" id="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple/>
             </div>
@@ -121,7 +120,7 @@
   <button class="prev">Previous</button>
   <div class="image_slider">
     <div style="display: inline-block;">
-      <img src="Images/tree_index.jpeg"/>
+      <img src="Images/uml2.png"/>
     </div>
     <div>
      <img src="Images/tree_index1.jpeg"/>
@@ -165,13 +164,13 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
-<script src="js/bootstrap.min.js"></script> 
+<!--<script src="js/bootstrap.min.js"></script> -->
 
 <!--  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>  --> 
 <!--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>   --> 
 <script src="js/trove.js"></script> 
 <script src="js/strengthen_dna_general.js"></script> 
-<script type="text/javascript" src="js/jquery.js?ver=1.11.1"></script> 
-<script type="text/javascript" src="js/jquery-migrate.min.js?ver=1.2.1"></script>
+<!--<script type="text/javascript" src="js/jquery.js?ver=1.11.1"></script>  - -->
+<!-- <script type="text/javascript" src="js/jquery-migrate.min.js?ver=1.2.1"></script> --> 
 </body>
 </html>

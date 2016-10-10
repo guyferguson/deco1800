@@ -4,6 +4,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <meta charset="utf-8">
 <title>Untitled Document</title>
+<style>
+
+.ui-widget-content {
+	width: 180px;
+	height: 180px;
+	padding: 0.5em;
+	margin: 10px 10px 10px 0;
+}
+</style>
 </head>
 
 <body>
@@ -74,12 +83,17 @@ var images =['http://digital.slv.vic.gov.au/webclient/DeliveryManager?pid=102166
 
 for (var ii=0;ii<images.length;ii++) {
 	$("<img src='"+images[ii]+"' />").load(function(ii){
-		 console.log("Success: " + images[ii]);
+		 console.log("Success: " + this.src );
 		 console.log("ii="+ii);
+		 imageFinal = new Image(); 
+		imageFinal.src = this.src;
+		imageFinal.style.verticalAlign = "top";
+		imageFinal.className = "ui-widget-content";
+		$("body").append(imageFinal);
 		 })
 	.error(function(ii){
-		 console.log("Failure: " + images[ii]);
-		 console.log("ii="+ii);
+		 console.log("Failure: " + this.src);
+		 
 		 });
 }
 </script>
