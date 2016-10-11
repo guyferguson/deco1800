@@ -68,9 +68,25 @@ img {
 .row.content {height: 100%}
     
 /* Set white background color and 100% height */
-.col-sm-3 {
+#left_container {
 	background-color: #FFFFFF;
-    height: 100%;
+    height: 100%; 
+    width: 25%;
+    float: left;
+}
+
+#right_container{
+	height: 100%;
+	width: 75%;
+	float: right;
+	position: relative;
+}
+
+.container{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	right: 0;
 }
     
 /* Set black background color, white text and some padding */
@@ -100,22 +116,47 @@ body {
 }
 
 
-.footer {
-  position: absolute;
+#navbar {
+  position: fixed;
   bottom: 0;
   width: 100%;  
 /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #FFFFFF;
+  background-color: #d3d3d3;
+}
+ul{
+ 	list-style-type: none;
+ 	margin: 0:
+ 	padding: 0;
+ 	overflow: hidden;	
+ }
+li{
+	float: left;
+}
+
+li a{
+	display: block;
+	color: white;
+	text-align: center;
+	padding-left: 20px;
+	text-decoration: none;
+}
+
+li a:hover{
+	background-color: #FFFFFF;
+}
+
+.active {
+    background-color: #4CAF50;
 }
 
 .child{
 	float: left;
-    width: 100px;
- //   height: 100px;
+    width: 10%;
+    height: 10%;
     border: 1px solid black;
     margin: 1%;
-    font-size: 17px;
+    font-size: 1.4vw;
     text-align: center;
     z-index: 100;
     background-color: white;
@@ -163,12 +204,12 @@ body {
 }
 #div9{
 	position: absolute;
-	left: 10%;
+	left: 15%;
 	margin-top: 40%;
 }
 #div10{
 	position: absolute;
-	left: 33%;
+	left: 33%; 
 	margin-top: 40%;
 }
 #div11{
@@ -178,7 +219,7 @@ body {
 }
 #div12{
 	position: absolute;
-	left: 80%;
+	left: 75%;
 	margin-top: 40%;
 }
 
@@ -186,22 +227,22 @@ body {
 	position: absolute;
 	left: 20%;
 	margin-top: 60%;
-	width: 200px;
-//	height: 200px;
+	width: 15%;
+	height: 15%;
 }
 #div14{
 	position: absolute;
 	left: 60%;
 	margin-top: 60%;
-	width: 200px;
-//	height: 200px;  
+	width: 15%;
+	height: 15%;  
 }
 #div15{
 	position: absolute;
 	left: 40%;
-	margin-top: 90%;
-	width: 200px;
-//	height: 200px;
+	margin-top: 80%;
+	width: 15%;
+	height: 15%;
 }
 
 .bosom-none {
@@ -216,9 +257,11 @@ body {
 /* image slider css*/ 
 
 .image_slider {
-  max-width: 100%;
-  max-height: 100%;
-  background-color: black;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+  
   margin: 0 auto;
   text-align: center;
   position: absolute;
@@ -234,6 +277,7 @@ body {
 }
 .image_slider img {
   width: 100%;
+  height: 100%
   height: auto;
   background-size: cover;
 }
@@ -260,7 +304,7 @@ body {
 #section1 {
 padding-top:50px;
 height:1300px; 
-background-image: url("../Images/LOGO.jpg");
+background-image: url("../Images/LOGO1.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 }
@@ -277,6 +321,12 @@ padding-top:50px;
 height:500px;
 color: #fff; 
 background-color: #ff9800;
+}
+
+/* paralax scrolling */
+.parallax-window {
+    min-height: 400px;
+    background: transparent;
 }
 
 /**
@@ -386,7 +436,7 @@ a {
 }
 
 a:visited {
-	color: #ac0404;
+	color: #FFFFFF;
 }
 
 a:focus {
@@ -3714,10 +3764,12 @@ footer.entry-meta {
   box-sizing: border-box; }
 
 .dropzone {
-  min-height: 150px;
+  height: 100%;
+  width: 100%;
   border: 2px solid rgba(0, 0, 0, 0.3);
   background: white;
-  padding: 20px 20px; }
+}
+
   .dropzone.dz-clickable {
     cursor: pointer; }
     .dropzone.dz-clickable * {

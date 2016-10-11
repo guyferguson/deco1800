@@ -17,8 +17,8 @@
 	var counter=0;
 	var successCounter=0;
 			 
-       var urlPatterns = ["flickr.com", "nla.gov.au", "artsearch.nga.gov.au", "recordsearch.naa.gov.au", "images.slsa.sa.gov.au", "collections.museumvictoria.com.au","archival-classic.sl.nsw.gov.au","handle.slv.vic.gov.au","hdl.loc.gov", "hdl.handle.net", "contentdm.lib.byu.edu", "cms.sl.nsw.gov.au", "gallica2.bnf.fr"];
-       var found = 0;
+    var urlPatterns = ["flickr.com", "nla.gov.au", "artsearch.nga.gov.au", "recordsearch.naa.gov.au", "images.slsa.sa.gov.au", "collections.museumvictoria.com.au","archival-classic.sl.nsw.gov.au","handle.slv.vic.gov.au","hdl.loc.gov", "hdl.handle.net", "contentdm.lib.byu.edu", "cms.sl.nsw.gov.au", "gallica2.bnf.fr"];
+    var found = 0;
 
 	   
 function loadImage(index) {
@@ -32,43 +32,17 @@ function loadImage(index) {
 (function($){
 
 	function buildImageHtml() {
-	//console.log("wait flickr Found = " + found+ "loadedImagesLength = " + loadedImages.length);
-
-	 	if(found === loadedImages.length) {
-		
-   $("p.lead").css("font-size", "18px");
-
+	 	if(found === loadedImages.length) {		
+  			$("p.lead").css("font-size", "18px");
 			$("p.lead").text("Drag any image across to your tree-->");
-			
-     //   $("#output").append("<h3>Image Search Results</h3>");
-	  //  j = 0;
-i = 0;
-		for (i = 0; i < loadedImages.length; i++) {
-			image = new Image();
-			console.log("i = " + i);
-			//console.log(wrapper);
-            image.src = loadedImages[i][1];
-       	   // image.style.verticalAlign = "top";
-           // image.className = "ui-widget-content";
-            image.alt = loadedImages[i][2];
-	   	    image.title = loadedImages[i][0];
-			console.log("About to test load");
-
-              console.log("Counter = "+ counter);   //This shows us that even at the end of this loop, tnhere has not been one successfully returned call to 'Succeed()'
-			
-			loadImage(i);
-	
-			
-            //image.onload = succeed(i);   
-			//image.onerror =  fail(i);
-			
-	//		image.onload = succeed(loadedImages[i]);   
-//			image.onerror =  fail(loadedImages[i]);
-			
-			//j+=1;
-		}
-		 // Hide all sets of 'img6' divs except the first one
- 
+			i = 0;
+			for (i = 0; i < loadedImages.length; i++) {
+				image = new Image();
+				image.src = loadedImages[i][1];
+				image.alt = loadedImages[i][2];
+				image.title = loadedImages[i][0];				
+				loadImage(i);	
+			} 
 		} else {
 			setTimeout(buildImageHtml, 250);
 		}
@@ -193,8 +167,7 @@ i = 0;
 				   loadedImages.push(imageData);
 			  } else if ((imgUrl.indexOf(urlPatterns[5]) >= 0) || (imgUrl.indexOf(urlPatterns[9]) >= 0) || (imgUrl.indexOf(urlPatterns[10]) >= 0) || (imgUrl.indexOf(urlPatterns[11]) >= 0) ) { // collections.museumvictoria.com.au AND hdl.handle.net  AND contentdm.lib.byu.edu AND http://acms.sl.nsw.gov.au 021016 GF
 	  
-				  found++;
-				  console.log(imgUrl);
+				   found++;
 				   imageData[0] = imgYear;
 				   if (troveItem.identifier.length > 1) {
 		  		   		imageData[1] = troveItem.identifier[1].value;
@@ -215,44 +188,31 @@ i = 0;
 				   loadedImages.push(imageData);
 	  
 			  }  else if (imgUrl.indexOf(urlPatterns[7]) >= 0) { // handle.slv.vic.gov.au
-	  
 				  found++;
 				 	//Hackish way to determine if there is an item in identifier[1]
 	  				if (troveItem.identifier.length > 1) {
-			//			console.log("Using identifier[1]");
 						path = troveItem.identifier[1].value;
 					} else {
-			//			console.log("Using identifier[0]");
-						// This weill need changing, but no idea where to get the 3c2000 stuff from...
 						path = "http://cdn.loc.gov/service/pnp/cph/3c20000/3c24000/3c24100/" + imgUrl.substring(String(troveItem.identifier[0].value).length-7,String(troveItem.identifier[0].value).length);
-				//		console.log("Going to path " + path);
-					}
+				   }
 				   imageData[0] = imgYear;
 		  		   imageData[1] =   path;
 				   imageData[2] =  troveItem.title;
 				   imageData[3] =  troveItem.id;
 				   loadedImages.push(imageData);
-		//	console.log("Loaded images = " + imageData[0] + " and url=" + imageData[1]);
-	  
 			  }  else if (imgUrl.indexOf(urlPatterns[8]) >= 0) { // hdl.loc.gov
 	  
 				  found++;
-	//			  console.log(troveItem  );
-				//  console.log("FOUND AN HDL LOC GOV: ");
-		//		  console.log(troveItem.identifier[1].value);
-					if (troveItem.identifier.length > 1) {
+				  if (troveItem.identifier.length > 1) {
 						path = troveItem.identifier[1].value;
-					} else {
+				  } else {
 				  path = "http://cdn.loc.gov/service/pnp/cph/3c20000/3c24000/3c24100/" + imgUrl.substring(String(troveItem.identifier[0].value).length-7,String(troveItem.identifier[0].value).length) + "r.jpg";
-					}
-		//				console.log("Going to path " + path);
-				   imageData[0] = imgYear;
-		  		   imageData[1] =   path;
-				   imageData[2] =  troveItem.title;
-				   imageData[3] =  troveItem.id;
-				   loadedImages.push(imageData);
-		//	console.log("Loaded images = " + imageData[0] + " and url=" + imageData[1]);
-	  
+				  }
+				  imageData[0] = imgYear;
+		  		  imageData[1] =   path;
+				  imageData[2] =  troveItem.title;
+				  imageData[3] =  troveItem.id;
+				  loadedImages.push(imageData);	  
 			  }  else if ((imgUrl.indexOf(urlPatterns[12]) >= 0)) { // agallica2.bnf.fr  GF 021016
 	  
 				   found++;
@@ -260,8 +220,7 @@ i = 0;
 		  		   imageData[1] =   troveItem.identifier[0].value + "/f1.highres";
 				   imageData[2] =  troveItem.title;
 				   imageData[3] =  troveItem.id;
-				   loadedImages.push(imageData);
-	  
+				   loadedImages.push(imageData);	  
 			  } 
 	  
 			  else { // Could not reliably load image for item
@@ -354,15 +313,12 @@ function sortFunction(a, b) {
 
 function succeed(currImg) {
 	imageFinal = new Image();
-	console.log("About to loko in loadedImages at " + currImg);
 	imageFinal.src = loadedImages[currImg][1];
 	imageFinal.style.verticalAlign = "top";
 	imageFinal.className = "ui-widget-content";
 	imageFinal.alt = loadedImages[currImg][2];
 	imageFinal.title = loadedImages[currImg][0];
 	spn = $("<span>", {"class": "text"});
-	console.log("Here with i = " + i + " and counter = " + counter);
-	//console.log(arrayImg);
 	$(spn).text(loadedImages[currImg][0]);
 	wrapper =  $("<a>", {"class": "wrapper", "id":loadedImages[currImg][3]} ).append(spn);
 	$(wrapper).attr("draggable","true");
@@ -386,7 +342,7 @@ function succeed(currImg) {
 	counter+=1;
 	successCounter+=1;
 	console.log("Image " + loadedImages[currImg][1] + " loaded");
-	if (counter >= loadedImages.length-1) {
+	if (counter > loadedImages.length-1) {
 			console.log("Call final to turn on pagination, hide images etc");
 		final();
 	}
@@ -395,13 +351,10 @@ function succeed(currImg) {
 
     
 	 function fail(arrayImg) {
-		  console.log("image did not load: src=" + this.src); 
-		  //newHtml = $("<p>bad pic!</p>");
-              console.log("fail Counter = "+ counter + " and src = " + arrayImg[1]);
 		  image = '';
 		  wrapper = $('');
-            counter+=1;
-			if (counter >= loadedImages.length - 1) {  //Not sure why I had to add the '- 1'..gf 071016
+          counter+=1;
+		  if (counter > loadedImages.length - 1) {  //Not sure why I had to add the '- 1'..gf 071016
 			console.log("Call final to turn on pagination, hide images etc");
 				final();
 			}
