@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/google_jquery.min.js"></script>
 <script src="js/smartpaginator.js" type="text/javascript"></script>
+<script src="js/jsPDF-1.2.60/dist/jspdf.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="css/jquery-ui.css">
 <link rel="stylesheet" href="css/style.css">
 <link href="css/smartpaginator.css" rel="stylesheet" type="text/css" />
@@ -33,7 +34,19 @@
 </head>
 
 <body>
+			<style>
+			FB.ui({
+  				method: 'share',
+				href: 'https://developers.facebook.com/docs/',
+			}, function(response){});
+
+			</style>
+
+
+
+
 <div id= "left_container">
+<button id="cmd">generate PDF</button>
   <p class = "lead">Enter your surname here:</p>
   <form action="#" id="searchTrove">
     <input id="searchTerm" type="text" />
@@ -137,29 +150,22 @@
   
   <!-- Image Slider-->
   
-  <button class="next">Next</button>
-  <button class="prev">Previous</button>
+  <button class="next">Next<br>Background</button>
+  <button class="prev">Previous<br>Background</button>
   <div class="image_slider">
-    <div style="display: inline-block;"> <img src="Images/uml2.png"/> </div>
-    <div> <img src="Images/tree_index1.jpeg"/> </div>
-    <div> <img src="Images/tree_index2.jpeg"/> </div>
-    <div> <img src="Images/tree_index3.jpeg"/> </div>
+    <div style="display: inline-block;"> <img src="Images/CloudTreeLong_compressed_smallest.png"/> </div>
+    <div> <img src="Images/DotTree_smallest.png"/> </div>
+    <div> <img src="Images/FlowerTree_smallest.png"/> </div>
+    <div> <img src="Images/uml2.png"/> </div>
     <div> <img src="Images/tree_index4.jpeg"/> </div>
     <div> <img src="Images/tree_index5.jpeg"/> </div>
   </div>
 </div>
+
 <div id="navbar">
-<div class="nav_container">
   <ul>
-    <li><a href="index.php">Strengthen My DNA</a>
-    <li><a href="family_tree.php">Family Tree</a></li>
-    <li><a href="about.php">About</a></li>
+  	<li><a href="index.php">Home</a></li>
   </ul>
-  <ul>
-    <li><a href="index.php"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
-    <li><a href="index.php"><span class="glyphicon glyphicon-log-in"></span>Sign Out</a></li>
-  </ul>
-  </div>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -83,10 +83,11 @@ img {
 }
 
 .container{
-	height: 100%;
+	height: 90vw;
 	width: 100%;
 	position: absolute;
 	right: 0;
+	margin-bottom: 60px;
 }
     
 /* Set black background color, white text and some padding */
@@ -124,14 +125,24 @@ body {
   height: 60px;
   background-color: #d3d3d3;
 }
+
+#navbar1 {
+  position: fixed;
+  top: 0;
+  width: 100%;  
+/* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #d3d3d3;
+}
 ul{
- 	list-style-type: none;
+ 	list-style: none;
  	margin: 0:
  	padding: 0;
  	overflow: hidden;	
  }
 li{
-	float: left;
+	float: right;
+	margin-left: 4%;
 }
 
 li a{
@@ -152,95 +163,96 @@ li a:hover{
 
 .child{
 	float: left;
-    width: 10%;
-    height: 10%;
+    width: 6vw;
+    height: 6vw;
     border: 1px solid black;
     margin: 1%;
-    font-size: 1.4vw;
+    font-size: 1vw;
     text-align: center;
     z-index: 100;
     background-color: white;
+    border-radius: 10px;
 }
 
 #div1{
 	position: absolute;
 	left: 10%;
-	margin-top: 20%;
+	margin-top: 10%;
 }
 #div2{
 	position: absolute;
 	left: 20%;
-	margin-top: 20%;
+	margin-top: 10%;
 }
 #div3{
 	position: absolute;
 	left: 30%;
-	margin-top: 20%;
+	margin-top: 10%;
 }
 #div4{
 	position: absolute;
 	left: 40%;
-	margin-top: 20%;
+	margin-top: 10%;
 }
 #div5{
 	position: absolute;
 	left: 50%;
-	margin-top: 20%;
+	margin-top: 10%;
 }
 #div6{
 	position: absolute;
 	left: 60%;
-	margin-top: 20%;
+	margin-top: 10%;
 }
 #div7{
 	position: absolute;
 	left: 70%;
-	margin-top: 20%;
+	margin-top: 10%;
 }
 #div8{
 	position: absolute;
 	left: 80%;
-	margin-top: 20%;
+	margin-top: 10%;
 }
 #div9{
 	position: absolute;
 	left: 15%;
-	margin-top: 40%;
+	margin-top: 30%;
 }
 #div10{
 	position: absolute;
 	left: 33%; 
-	margin-top: 40%;
+	margin-top: 30%;
 }
 #div11{
 	position: absolute;
 	left: 56%;
-	margin-top: 40%;
+	margin-top: 30%;
 }
 #div12{
 	position: absolute;
 	left: 75%;
-	margin-top: 40%;
+	margin-top: 30%;
 }
 
 #div13{
 	position: absolute;
 	left: 20%;
-	margin-top: 60%;
+	margin-top: 50%;
 	width: 15%;
 	height: 15%;
 }
 #div14{
 	position: absolute;
 	left: 60%;
-	margin-top: 60%;
+	margin-top: 50%;
 	width: 15%;
 	height: 15%;  
 }
 #div15{
 	position: absolute;
 	left: 40%;
-	margin-top: 80%;
+	margin-top: 70%;
 	width: 15%;
 	height: 15%;
 }
@@ -291,10 +303,17 @@ button {
 .next {
   right: 5px;
   position: absolute;
+  margin-top: 40%;
+  font-size: 1.2vw;
+  padding: 5px 10px;
 }
 
 .prev {
   left: 5px;
+  margin-top: 40%;
+  margin-left: 3px;
+  font-size: 1.2vw;
+  padding: 5px 10px;
 }
 
 body {
@@ -302,31 +321,39 @@ body {
   }
 
 #section1 {
-padding-top:50px;
-height:1300px; 
-background-image: url("../Images/LOGO1.jpg");
+height:100%; 
+background-image: URL("/Images/LOGO1.jpg");
+min-height: 1018px;
 background-repeat: no-repeat;
 background-size: cover;
 }
 
+#about{
+	width: 75%;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 50px;
+}
+
 #section2 {
-padding-top:50px;
 height:500px;
-color: #fff; 
-background-color: #ffffff;
+background-image: URL("/Images/tree_index.jpeg");
 }
   
 #section3 {
-padding-top:50px;
-height:500px;
-color: #fff; 
-background-color: #ff9800;
+height:500px; 
+background-image: URL("/Images/tree_index1.jpeg");
 }
 
 /* paralax scrolling */
 .parallax-window {
     min-height: 400px;
     background: transparent;
+}
+/*facebook login*/
+.fb_iframe_widget{
+	float: left;
+	margin-top: 6px;
 }
 
 /**
@@ -631,11 +658,11 @@ menu,
 ol,
 ul {
 	margin: 16px 0;
-	padding: 0 0 0 40px;
+	padding: 0 40px 0 40px;
 }
 
 ul {
-	list-style-type: square;
+	list-style: none;
 }
 
 nav ul,
@@ -951,11 +978,11 @@ button,
 input[type="submit"],
 input[type="button"],
 input[type="reset"] {
-	background: #e05d22; /* Old browsers */
-	background: -webkit-linear-gradient(top, #FFA233 0%, #FFA233 100%); /* Chrome 10+, Safari 5.1+ */
-	background:   linear-gradient(to bottom, #FFA233 0%, #FFA233 100%); /* W3C */
+	background: #EDB579; /* Old browsers */
+	background: -webkit-linear-gradient(#EDB579); /* Chrome 10+, Safari 5.1+ */
+	background:   linear-gradient(#EDB579); /* W3C */
 	border: none;
-	border-bottom: 3px solid #FFA233;
+	border-bottom: 3px solid #EDB579;
 	border-radius: 2px;
 	color: #fff;
 	display: inline-block;
@@ -972,8 +999,8 @@ input[type="submit"]:focus,
 input[type="button"]:focus,
 input[type="reset"]:focus {
 	background: #ED6431; /* Old browsers */
-	background: -webkit-linear-gradient(top, #ED6431 0%, #ED6431 100%); /* Chrome 10+, Safari 5.1+ */
-	background:   linear-gradient(to bottom, #ED6431 0%, #ED6431 100%); /* W3C */
+	background: -webkit-linear-gradient(#DBE6AF); /* Chrome 10+, Safari 5.1+ */
+	background:   linear-gradient(#DBE6AF); /* W3C */
 	outline: none;
 }
 
@@ -3771,7 +3798,9 @@ footer.entry-meta {
 }
 
   .dropzone.dz-clickable {
-    cursor: pointer; }
+    cursor: pointer; 
+    border-radius: 10px;
+}
     .dropzone.dz-clickable * {
       cursor: default; }
     .dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message * {

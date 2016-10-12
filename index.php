@@ -19,7 +19,8 @@
   </head>
   
   <body>
-
+<!-- facebook login-->
+  <div id="fb-root"></div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -28,29 +29,45 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1186835531391087";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+  
+<!--navabr--> 
+  <div id="navbar1">
+  	<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" 
+	data-auto-logout-link="true"></div>
+  
+  		<ul>
+  			<li><a href="#how_to">How to</a></li>
+   			 <li><a href="#about">About</a></li>	
+   			 <li><a href="family_tree.php">Family Tree</a></li>
+   			 <li><a href="#section1">Strengthen My DNA</a>
+		</ul>
+	</div>
 
+<div id="section1" class="parallax-window" data-parallax="scroll">
 
-
-<div id="section1" class="parallax-window" data-parallax="scroll" data-image-src="/Images/LOGO1.jpg">
-	<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" 
-	data-auto-logout-link="false"></div> 		
 
 </div>
 
 <section>
-	<div>
+	<div id="about">
 	<h1> About </h1>
 	<p> Strengthen Your DNA is the first genealogy application that pulls all of its data<br>
 	directly from TROVE.
 	</div>
 </section>
 
-<div id="section2" class="parallax-window" data-parallax="scroll" data-image-src="/Images/tree_index.jpeg">
+<div id="section2" class="parallax-window" data-parallax="scroll">
 
 </div>
 
+<section>
+	<div id="how_to">
+	<h1> How TO </h1>
+	<p>
+	</div>
+</section>
 
-<div id="section3" class="parallax-window" data-parallax="scroll" data-image-src="/Images/tree_index1.jpeg">
+<div id="section3" class="parallax-window" data-parallax="scroll">
 
 
 </div>

@@ -31,10 +31,26 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
 	// Return src earlier dropped
 	document.getElementById(data).getElementsByTagName('img')[0].src = tmpSrc;
-	<!--alert("Dropping " + data); -->
+	console.log("FROM:" + findPos(document.getElementById(data)));
+	console.log("TO X:"+event.clientX);
+    console.log("TO Y:" +event.clientY);
+	//alert("Dropping at" + findPos(document.getElementById(data))[0] );
     ev.target.appendChild(document.getElementById(data));
+	document.getElementById(data).style.left = document.getElementById(data).style.left - 45 + 'px';
+    document.getElementById(data).style.top =  document.getElementById(data).style.top - 85 + 'px';
 }
 
+// A dev function to help GF work out where drop events are occurring etc...121016 - OK, this returns where the dragged image came from
+function findPos(obj) {
+    var curleft = curtop = 0;
+    if (obj.offsetParent) {
+        do {
+            curleft += obj.offsetLeft;
+            curtop += obj.offsetTop;
+        } while (obj == obj.offsetParent);
+        return { x: curleft, y: curtop };
+    }
+}
 /* image slider*/
 
 var currentIndex = 0,

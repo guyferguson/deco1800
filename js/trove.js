@@ -365,3 +365,19 @@ function final() {
 	console.log("Here fires smartPaginator!");
 	$('#smart-paginator').smartpaginator({ totalrecords: Math.round(successCounter / 6)-1, recordsperpage: 1, length: 5, controlsalways:true, datacontainer: 'output', dataelement: '.img6', initval: 0, next: '>', prev: '<', first: '<<', last:'>>', theme: 'green', display: 'single'    });
 }
+
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+	alert("PDF Print happening");
+    doc.fromHTML($('#right_container').html(), 15, 15, {
+        'width': 150,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+});
