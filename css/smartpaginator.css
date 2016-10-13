@@ -5,7 +5,7 @@
     padding: 0px;
     margin: 0px;
     margin-top: 5px;
-    padding-top: 10px;
+    padding-top: 0.5px;
     padding-left: 10px; /*border-radius: 8px; 	-moz-border-radius: 8px;*/
 }
 .pager div.short
@@ -28,7 +28,7 @@
 .pager ul
 {
     list-style: none;
-	width:65%;    /*300916  GF to handle when there are >9 pages */
+	width:65%;  /*300916  GF to handle when there are >9 pages */
     padding: 0;
     margin: 0;
     float: left;
@@ -37,7 +37,7 @@
 .pager ul li
 {
     display: inline;
-    margin-left: 2px;
+    margin-left: 0px;
 }
 .pager ul li a
 {
@@ -59,7 +59,7 @@
 .pager .btn
 {
     display: block;    /* GF - disappear this..was 'block'*/
-    width: 15px;   /*was 40px */
+    width: 30px;   /*was 40px */
     text-align: center;
     float: left;
     padding: 0;
@@ -83,25 +83,27 @@
 }
 /*green*/.green
 {
-    background-color: #4f7305;
+    background-color: #DBE6AF;
 }
 .green.normal
 {
-    background-color: #588500;
-    color: White;
-	font-size:9px;
-    border: solid 1px #5f9000;
+    background-color: #FFFFFF;
+    color: #6D7696;
+	font-size:1.4vw;
+    border: solid 1px #DBE6AF;
+    padding-left: 2px;
+    margin: 2px;
 }
 .green.active
 {
-    background-color: #344C00;
-    color: #F8EB00;
-    border: solid 1px #5f9000;
+    background-color: #EDB579;
+    color: white;
+    border: solid 1px #DBE6AF;
 }
 .pager.green .btn
 {
-    background-color: #588500;
-    color: White;
-    border: solid 1px #5f9000;
+    background-color: #FFFFFF;
+    color: #6D7696;
+    border: solid 1px #DBE6AF;
 }
 

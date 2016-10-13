@@ -6,6 +6,11 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
+//This function is called once the 'FB Login; or 'FB logout' button is pressed
+function successfulLogin() {
+	window.location = "http://deco1800-405.uqcloud.net/family_tree.php";
+}
+
 function drag(ev) {
 	tmpSrc = '';
 if ((ev.target.className) == "wrapper") {
@@ -21,8 +26,10 @@ if ((ev.target.parentNode.className) == "wrapper") {
 
 }
 
-function ondragstart(ev) {
-alert("Drag started");
+function dragend(ev) {
+
+    var data = ev.dataTransfer.getData("text");
+	//alert ("Drag  end =" + ev.target.className);
     //ev.dataTransfer.setData("text", ev.target.id);
 }
 
@@ -36,8 +43,8 @@ function drop(ev) {
     console.log("TO Y:" +event.clientY);
 	//alert("Dropping at" + findPos(document.getElementById(data))[0] );
     ev.target.appendChild(document.getElementById(data));
-	document.getElementById(data).style.left = document.getElementById(data).style.left - 45 + 'px';
-    document.getElementById(data).style.top =  document.getElementById(data).style.top - 85 + 'px';
+	document.getElementById(data).style.left = document.getElementById(data).style.left - 50 + 'px';
+    document.getElementById(data).style.top =  document.getElementById(data).style.top - 125 + 'px';
 }
 
 // A dev function to help GF work out where drop events are occurring etc...121016 - OK, this returns where the dragged image came from
@@ -72,7 +79,6 @@ $('.next').click(function() {
 });
 
 $('.prev').click(function() {
-
   currentIndex -= 1;
   if (currentIndex < 0) {
     currentIndex = itemAmt - 1;
@@ -1849,17 +1855,13 @@ $('.prev').click(function() {
 }).call(this);
 
 
-
-
-
-
-
-
+// ==================================================================================================================
+//      FACEBOOK Functions. Added 13.10.16 GF & SG   https://developers.facebook.com/docs/facebook-login/web#api-calls
+// ==================================================================================================================
 
 
 // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
     console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
@@ -1867,7 +1869,8 @@ $('.prev').click(function() {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+	  console.log(response);
+      testAPI(response);
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -1889,9 +1892,10 @@ $('.prev').click(function() {
     });
   }
 
+  //This code runs on every page refresh
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '{1186835531391087}',
+    appId      : '1186835531391087',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -1927,11 +1931,37 @@ $('.prev').click(function() {
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
+  function testAPI(responseTmp) {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+	FB.api('me?fields=id,name,last_name,picture', function(response) {
+	    //FB.api('/'+responseTmp.authResponse.userID, function(response) {
+		console.log(response);
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+      console.log(response.picture);
+      console.log(response.picture.data.url);
+      //console.log('surnamec =  ' + response.last_name);
+	  var srchTrm = document.getElementById('searchTerm');
+	  srchTrm.value = response.last_name; 
+	   document.getElementById('status').innerHTML = 'fb status bar:' + response.name; 
+	   $('#div15').prepend('<img id="fb_profile" width = "140vw" height = "140vh" src="' + response.picture.data.url + '" />');
+	   // Lose teh 'select your own image or click
+	    $("#div15").children("form").detach();
     });
   }
+  
+  
+//Generate PDF//
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+    doc.fromHTML($('#right_container').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+});

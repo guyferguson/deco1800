@@ -6,44 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Strengthen Your DNA</title>
-    <link rel="stylesheet" href="css/style.css">  
+    <link rel="stylesheet" href="css/style.css"> 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  
+  <script src="facebook_javascript_api_file_src"></script>
 
-  
   </head>
   
-  <body>
+  <body> 
 <!-- facebook login-->
-  <div id="fb-root"></div>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1186835531391087";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-  
+		<script>
+    (function(d, s, id) {
+  		var js, fjs = d.getElementsByTagName(s)[0];
+ 			if (d.getElementById(id)) return;
+  			js = d.createElement(s); js.id = id;
+  			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1186835531391087";
+ 			 fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script src="js/google_jquery.min.js"></script> 
+    <script src="js/strengthen_dna_general.js"></script>
+
 <!--navabr--> 
   <div id="navbar1">
-  	<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" 
-	data-auto-logout-link="true"></div>
-  
-  		<ul>
-  			<li><a href="#how_to">How to</a></li>
-   			 <li><a href="#about">About</a></li>	
-   			 <li><a href="family_tree.php">Family Tree</a></li>
+  	<div id="fb-root"></div>
+   	<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" 
+	data-auto-logout-link="true" onlogin="successfulLogin()"  data-show-faces="true"></div>
+  		<ul id="index_nav">
    			 <li><a href="#section1">Strengthen My DNA</a>
+   			 <li><a href="family_tree.php">Family Tree</a></li>
+   			 <li><a href="#about">About</a></li>
+   			 <li><a href="#how_to">How to</a></li>
 		</ul>
 	</div>
 
-<div id="section1" class="parallax-window" data-parallax="scroll">
+<div id="section1" class="parallax">
 
 
 </div>
@@ -51,13 +54,15 @@
 <section>
 	<div id="about">
 	<h1> About </h1>
-	<p> Strengthen Your DNA is the first genealogy application that pulls all of its data<br>
-	directly from TROVE.
+	<p> Strengthen Your DNA is reimagining TROVE data in a fun and exciting way!<br>
+	We allow you to search thousands of potential ansestors that have been lost in <br>
+	the TROVE databases to find potential family members. You can even share your discoveries <br>
+	with family and friends or print them out. Keep scrolling for How To Steps or simply log<br>
+	in to Facebook to start you journey.
 	</div>
 </section>
 
-<div id="section2" class="parallax-window" data-parallax="scroll">
-
+<div id="section2" class="parallax">
 </div>
 
 <section>
@@ -67,7 +72,7 @@
 	</div>
 </section>
 
-<div id="section3" class="parallax-window" data-parallax="scroll">
+<div id="section3" class="parallax">
 
 
 </div>
@@ -101,13 +106,12 @@
             -->
 	<!--	<footer class="site-footer"><div class=" site-info">Fake Family Tree</div></footer>-->
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/trove.js"></script>
-    <script src="js/strengthen_dna_general.js"></script>
-    <script type="text/javascript" src="js/jquery.js?ver=1.11.1"></script>
-	<script type="text/javascript" src="js/jquery-migrate.min.js?ver=1.2.1"></script>
+   <!-- <script type="text/javascript" src="js/jquery.js?ver=1.11.1"></script>
+	<script type="text/javascript" src="js/jquery-migrate.min.js?ver=1.2.1"></script> -->
 	
+  
+    <script src="js/trove.js"></script>
 	
         
   </body>

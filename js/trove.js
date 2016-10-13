@@ -381,3 +381,19 @@ $('#cmd').click(function () {
     });
     doc.save('sample-file.pdf');
 });
+
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+	alert("PDF Print happening");
+    doc.fromHTML($('#right_container').html(), 15, 15, {
+        'width': 150,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+});
