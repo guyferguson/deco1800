@@ -16,6 +16,8 @@
 	var  i, currImg = 0;
 	var counter=0;
 	var successCounter=0;
+	var prevYear = 1;
+	var prevId = 1;
 			 
     var urlPatterns = ["flickr.com", "nla.gov.au", "artsearch.nga.gov.au", "recordsearch.naa.gov.au", "images.slsa.sa.gov.au", "collections.museumvictoria.com.au","archival-classic.sl.nsw.gov.au","handle.slv.vic.gov.au","hdl.loc.gov", "hdl.handle.net", "contentdm.lib.byu.edu", "cms.sl.nsw.gov.au", "gallica2.bnf.fr"];
     var found = 0;
@@ -106,26 +108,19 @@ function loadImage(index) {
 		//Determine if there is a date tag in JSON 
 		if (troveItem.hasOwnProperty('issued')) {
         	imgYear = String(troveItem.issued);
-			//console.log("About to work with " + imgYear + " on " + imgUrl);
-			//console.log("converting imgYear into " + imgYear.substring(0,4));
 			if (Number(imgYear) > 1500 && Number(imgYear) < 2100)  {
-			// console.log(imgYear + " is the year of the image");
+				//do nothing
 			} else if ((Number(imgYear.substring(0,4)) > 1500 && Number(imgYear.substring(0,4) < 2100))){
-			// console.log("converting imgYear into " + imgYear.substring(0,4));
-			 imgYear = imgYear.substring(0,4);  // Set it to 9999, then we include 9999 with every generation
+				 imgYear = imgYear.substring(0,4);  // Set it to 9999, then we include 9999 with every generation
 			} else {
-			//console.log(imgYear + " is not a valid year");	
-			 imgYear = "No Date";  // Set it to 9999, then we include 9999 with every generation
+			 	imgYear = "No Date";  // Set it to 9999, then we include 9999 with every generation
 			}
 		} else {
-			//console.log("No year stored for " + imgUrl);
 			imgYear = "No Date";
 		}
         var imageData = [];
 		var path;		  
 		
-		//console.log("Working with " + imgUrl);
-
 			  if (imgUrl.indexOf(urlPatterns[0]) >= 0) { // flickr
 	  		      found++;
 	  			  addFlickrItem(imgUrl, troveItem, imgYear);
@@ -320,50 +315,53 @@ function succeed(currImg) {
 	imageFinal.title = loadedImages[currImg][0];
 	spn = $("<span>", {"class": "text"});
 	$(spn).text(loadedImages[currImg][0]);
-	wrapper =  $("<a>", {"class": "wrapper", "id":loadedImages[currImg][3]} ).append(spn);
+	wrapper =  $("<a>", {"class": "wrapper lazy", "id":loadedImages[currImg][3]} ).append(spn);
 	$(wrapper).attr("draggable","true");
 	$(wrapper).attr("ondragstart","drag(event)");
-	if ((successCounter % 6) === 0) {
-		//Commence by adding what we have to #output
-		$("#output").append(newHtml);
-		if (successCounter >=6) {
-			newHtml=$("<div class = 'img6'>");
-			$(newHtml).css('display', 'none');
+	$(wrapper).attr("data-original",imageFinal.src);
+//	if (successCounter == 0) {
+//		console.log("Adding success " + loadedImages[currImg][3]);
+//		console.log(imageFinal);
+//		$("#output").append(wrapper.append(imageFinal));
+//	} else {
+		//Sort the images by year
+		if (loadedImages[currImg][0] < prevYear) {
+			console.log(loadedImages[currImg][0] + "comes before " + prevYear + ", so prepend");
+			console.log("#"+prevId);
+			$("#output").prepend(wrapper.append(imageFinal));
 		} else {
-			newHtml=$("<div class = 'img6'>");
+			console.log(loadedImages[currImg][0] + "comes after " + prevYear + ", so append");
+			console.log("#"+prevId);
+			$("#output").append(wrapper.append(imageFinal));
 		}
-		//Add the first image to this img6 div
-		newHtml.append(wrapper.append(imageFinal));
-		
-	} else {
-		newHtml.append(wrapper.append(imageFinal));
-		
-	}
+//	}
 	counter+=1;
-	successCounter+=1;
-	console.log("Image " + loadedImages[currImg][1] + " loaded");
-	if (counter > loadedImages.length-1) {
-			console.log("Call final to turn on pagination, hide images etc");
-		final();
-	}
+successCounter+=1;
+	//console.log("Image " + loadedImages[currImg][1] + " loaded");
+	prevYear = loadedImages[currImg][0];
+	prevId = loadedImages[currImg][3];
+//	if (counter > loadedImages.length-1) {
+//			console.log("Call final to turn on pagination, hide images etc");
+//		final();
+//	}
 	//console.log("Returning from succeed function");
 }
 
     
 	 function fail(arrayImg) {
-		  image = '';
-		  wrapper = $('');
+		//  image = '';
+		//  wrapper = $('');
           counter+=1;
 		  if (counter > loadedImages.length - 1) {  //Not sure why I had to add the '- 1'..gf 071016
 			console.log("Call final to turn on pagination, hide images etc");
-				final();
+			//	final();
 			}
 		  }
 		  
 function final() {
-	$('.img6.test:not(:first)').css('display', 'none');
+//	$('.img6.test:not(:first)').css('display', 'none');
 	console.log("Here fires smartPaginator!");
-	$('#smart-paginator').smartpaginator({ totalrecords: Math.round(successCounter / 6)-1, recordsperpage: 1, length: 5, controlsalways:true, datacontainer: 'output', dataelement: '.img6', initval: 0, next: '>', prev: '<', first: '<<', last:'>>', theme: 'green', display: 'single'    });
+//	$('#smart-paginator').smartpaginator({ totalrecords: Math.round(successCounter / 6)-1, recordsperpage: 1, length: 5, controlsalways:true, datacontainer: 'output', dataelement: '.img6', initval: 0, next: '>', prev: '<', first: '<<', last:'>>', theme: 'green', display: 'single'    });
 }
 
 var doc = new jsPDF();
@@ -397,3 +395,9 @@ $('#cmd').click(function () {
     });
     doc.save('sample-file.pdf');
 });
+
+//image gallery load
+$(function() {
+    $("img.lazy").lazyload();
+});
+

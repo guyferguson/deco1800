@@ -8,22 +8,45 @@ function allowDrop(ev) {
 
 //This function is called once the 'FB Login; or 'FB logout' button is pressed
 function successfulLogin() {
-	window.location = "http://deco1800-405.uqcloud.net/family_tree.php";
+	var data;
+	FB.getLoginStatus(function(data) {
+        statusChangeCallback(data);
+	    console.log(data); 
+	    if(data.status === "connected") {
+		    window.location = "http://deco1800-405.uqcloud.net/family_tree.php";
+     	} else {
+	    	console.log("I think that was just a logout!");
+	   }
+    });
+
 }
 
+
+	
 function drag(ev) {
 	tmpSrc = '';
-if ((ev.target.className) == "wrapper") {
+if ((ev.target.className) === "wrapper lazy") {207527850
 	tmpSrc = document.getElementById(ev.target.id).getElementsByTagName('img')[0].src;
-	document.getElementById(ev.target.id).getElementsByTagName('img')[0].src = '../Images/1x1pixel.png';
+	//document.getElementById(ev.target.id).getElementsByTagName('img')[0].src = '../Images/1x1pixel.png';
     ev.dataTransfer.setData("text", ev.target.id);
 }
-if ((ev.target.parentNode.className) == "wrapper") {
+if ((ev.target.parentNode.className) == "wrapper lazy") {
 	tmpSrc = document.getElementById(ev.target.parentNode.id).getElementsByTagName('img')[0].src;
-	document.getElementById(ev.target.parentNode.id).getElementsByTagName('img')[0].src = '../Images/1x1pixel.png';
+	//document.getElementById(ev.target.parentNode.id).getElementsByTagName('img')[0].src = '../Images/1x1pixel.png';
     ev.dataTransfer.setData("text", ev.target.parentNode.id);
 }
+// Make drop boxes quiver
+ $(".child").css({border: '0 solid orange'}).animate({
+        borderWidth: 4
+    }, 500);
+$(".treeLabels").show().delay(2000).fadeOut();
 
+$(".child").css({border: '0 solid orange'}).animate({
+        borderWidth: 4
+    }, 500);	
+ $(".child").css({border: '0 solid white'}).animate({
+        borderWidth: 1
+    }, 500);
 }
 
 function dragend(ev) {
@@ -43,8 +66,8 @@ function drop(ev) {
     console.log("TO Y:" +event.clientY);
 	//alert("Dropping at" + findPos(document.getElementById(data))[0] );
     ev.target.appendChild(document.getElementById(data));
-	document.getElementById(data).style.left = document.getElementById(data).style.left - 50 + 'px';
-    document.getElementById(data).style.top =  document.getElementById(data).style.top - 125 + 'px';
+	document.getElementById(data).style.left = document.getElementById(data).style.left -1 + 'vw';
+    document.getElementById(data).style.top =  document.getElementById(data).style.top -7.5 + 'vh';
 }
 
 // A dev function to help GF work out where drop events are occurring etc...121016 - OK, this returns where the dragged image came from
@@ -1873,13 +1896,30 @@ $('.prev').click(function() {
       testAPI(response);
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
+	  
+	  
+	  var $fbShare = $(".fb-share-button");
+		$fbShare.replaceWith(function () {
+  		  	return $('<div/>', {
+       		 class: 'myClass',
+       		 html: '<p>Please grant this app facebook rights</p>'
+    	});
+	});
+	  
+      document.getElementById('fb-share-button').innerHTML = 'Please log ' +
         'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+      var $fbShare = $(".fb-share-button");
+	     console.log('replacing share');
+		$fbShare.replaceWith(function () {
+  		  	return $('<div/>', {
+       		 class: 'fb-login-button',
+			 html:'<p>Log in to fb</p>'
+
+    	});
+	});
     }
   }
 
@@ -1933,17 +1973,22 @@ $('.prev').click(function() {
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI(responseTmp) {
     console.log('Welcome!  Fetching your information.... ');
-	FB.api('me?fields=id,name,last_name,picture', function(response) {
+	FB.api('me?fields=id,name,last_name', function(response) {
 	    //FB.api('/'+responseTmp.authResponse.userID, function(response) {
 		console.log(response);
       console.log('Successful login for: ' + response.name);
-      console.log(response.picture);
-      console.log(response.picture.data.url);
-      //console.log('surnamec =  ' + response.last_name);
+       document.getElementById('status').innerHTML = 'fb status bar:' + response.name;
 	  var srchTrm = document.getElementById('searchTerm');
-	  srchTrm.value = response.last_name; 
-	   document.getElementById('status').innerHTML = 'fb status bar:' + response.name; 
-	   $('#div15').prepend('<img id="fb_profile" width = "140vw" height = "140vh" src="' + response.picture.data.url + '" />');
+	  srchTrm.value = response.last_name;    //width = "140vw" height = "140vh"
+     FB.api('/'+response.id+'?fields=picture.height(2048)', function(response){
+		// console.log("Is this it?  " + response.picture.data.url);
+//   $("#profile_pic").attr("src",response.picture.data.url);
+ 
+// console.log(response.picture.data.url);
+      //console.log('surnamec =  ' + response.last_name);
+	 
+	   $('#div15').prepend('<img id="fb_profile"  src="' + response.picture.data.url + '" />');
+	   }); 
 	   // Lose teh 'select your own image or click
 	    $("#div15").children("form").detach();
     });

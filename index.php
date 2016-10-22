@@ -33,18 +33,15 @@
 <script src="js/google_jquery.min.js"></script> 
     <script src="js/strengthen_dna_general.js"></script>
 
-<!--navabr--> 
-  <div id="navbar1">
-  	<div id="fb-root"></div>
+<div id="fb-root"></div>
+
+  
    	<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" 
 	data-auto-logout-link="true" onlogin="successfulLogin()"  data-show-faces="true"></div>
-  		<ul id="index_nav">
-   			 <li><a href="#section1">Strengthen My DNA</a>
-   			 <li><a href="family_tree.php">Family Tree</a></li>
-   			 <li><a href="#about">About</a></li>
-   			 <li><a href="#how_to">How to</a></li>
-		</ul>
-	</div>
+ 
+ 
+</div> 	
+
 
 <div id="section1" class="parallax">
 
@@ -76,7 +73,19 @@
 
 
 </div>
-
+<!--navabr--> 
+  <div id="navbar">
+  	
+  	
+	
+  		
+  		<ul id="index_nav">
+   			 <li><a href="#section1">Strengthen My DNA</a>
+   			 <!--<li><a href="family_tree.php">Family Tree</a></li> -->
+   			 <li><a href="#about">About</a></li>
+   			 <li><a href="#how_to">How to</a></li>
+		</ul>
+	</div>
 </body>
    
 <!--
