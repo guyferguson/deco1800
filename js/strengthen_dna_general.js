@@ -25,12 +25,11 @@ function successfulLogin() {
 	
 function drag(ev) {
 	tmpSrc = '';
-if ((ev.target.className) === "wrapper lazy") {207527850
-	tmpSrc = document.getElementById(ev.target.id).getElementsByTagName('img')[0].src;
-	//document.getElementById(ev.target.id).getElementsByTagName('img')[0].src = '../Images/1x1pixel.png';
+if ((ev.target.className) === "wrapper lazy tooltip") {207527850
+	tmpSrc = document.getElementById(ev.target.id).getElementsByTagName('img')[0].src; 
     ev.dataTransfer.setData("text", ev.target.id);
 }
-if ((ev.target.parentNode.className) == "wrapper lazy") {
+if ((ev.target.parentNode.className) == "wrapper lazy tooltip") {
 	tmpSrc = document.getElementById(ev.target.parentNode.id).getElementsByTagName('img')[0].src;
 	//document.getElementById(ev.target.parentNode.id).getElementsByTagName('img')[0].src = '../Images/1x1pixel.png';
     ev.dataTransfer.setData("text", ev.target.parentNode.id);
@@ -58,16 +57,32 @@ function dragend(ev) {
 
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-	// Return src earlier dropped
-	document.getElementById(data).getElementsByTagName('img')[0].src = tmpSrc;
-	console.log("FROM:" + findPos(document.getElementById(data)));
-	console.log("TO X:"+event.clientX);
-    console.log("TO Y:" +event.clientY);
-	//alert("Dropping at" + findPos(document.getElementById(data))[0] );
-    ev.target.appendChild(document.getElementById(data));
-	document.getElementById(data).style.left = document.getElementById(data).style.left -1 + 'vw';
-    document.getElementById(data).style.top =  document.getElementById(data).style.top -7.5 + 'vh';
+	//Check if there are any images around here, if so, quit
+	if ($(ev.target).find('img').length >0 || $(ev.target).siblings('img').length >0) {
+		console.log($(ev.target).html());
+		console.log($(ev.target).find('img').length);
+		return false;
+	} else {
+		console.log("Dropping anyways!");
+		console.log($(ev.target).html());
+		console.log($(ev.target).find('img').length);
+		var data = ev.dataTransfer.getData("text");
+		// Return src earlier dropped
+		document.getElementById(data).getElementsByTagName('img')[0].src = tmpSrc;
+		console.log("FROM:" + findPos(document.getElementById(data)));
+		console.log("TO X:"+event.clientX);
+		console.log("TO Y:" +event.clientY);
+		console.log($(ev.target).height());
+		//If we're dropping on bottom 3 divsit's different
+		if ($(ev.target).hasClass("dz-default dz-message")) {
+			 $(ev.target).parent('form').prepend(document.getElementById(data));
+			 $(ev.target).remove();
+		} else {
+			ev.target.appendChild(document.getElementById(data));
+		}
+			$(ev.target).children('a').css('width','100%');
+			$(ev.target).children('a').css('height','100%');
+	}
 }
 
 // A dev function to help GF work out where drop events are occurring etc...121016 - OK, this returns where the dragged image came from
@@ -107,6 +122,34 @@ $('.prev').click(function() {
     currentIndex = itemAmt - 1;
   }
   cycleItems();
+});
+
+/* connector slider*/
+
+var currentsIndex = 0,
+  itemss = $('.connector_slider div'),
+  itemsAmt = itemss.length;
+
+function cyclesItems() {
+  var items = $('.connector_slider div').eq(currentsIndex);
+  itemss.hide();
+  items.css('display','inline-block');
+}
+
+$('.next_c').click(function() {
+  currentsIndex += 1;
+  if (currentsIndex > itemsAmt - 1) {
+    currentsIndex = 0;
+  }
+  cyclesItems();
+});
+
+$('.prev_c').click(function() {
+  currentsIndex -= 1;
+  if (currentsIndex < 0) {
+    currentsIndex = itemsAmt - 1;
+  }
+  cyclesItems();
 });
 
 /************** DROPZONE JS as required for image upload for tree base or parents **********/
@@ -1885,7 +1928,7 @@ $('.prev').click(function() {
 
 // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-    console.log(response);
+    //console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
@@ -1977,7 +2020,7 @@ $('.prev').click(function() {
 	    //FB.api('/'+responseTmp.authResponse.userID, function(response) {
 		console.log(response);
       console.log('Successful login for: ' + response.name);
-       document.getElementById('status').innerHTML = 'fb status bar:' + response.name;
+       document.getElementById('status').innerHTML = response.name;
 	  var srchTrm = document.getElementById('searchTerm');
 	  srchTrm.value = response.last_name;    //width = "140vw" height = "140vh"
      FB.api('/'+response.id+'?fields=picture.height(2048)', function(response){
@@ -1995,18 +2038,3 @@ $('.prev').click(function() {
   }
   
   
-//Generate PDF//
-var doc = new jsPDF();
-var specialElementHandlers = {
-    '#editor': function (element, renderer) {
-        return true;
-    }
-};
-
-$('#cmd').click(function () {
-    doc.fromHTML($('#right_container').html(), 15, 15, {
-        'width': 170,
-            'elementHandlers': specialElementHandlers
-    });
-    doc.save('sample-file.pdf');
-});

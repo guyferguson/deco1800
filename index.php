@@ -33,60 +33,76 @@
 <script src="js/google_jquery.min.js"></script> 
     <script src="js/strengthen_dna_general.js"></script>
 
-<div id="fb-root"></div>
 
-  
+<!--index page --!>
+<div id="section1">
+
+	<img id="LOGO1" src="/Images/LOGO1.jpg" alt="LOGO1">
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Click to Start Your <br>Family Tree!</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times</span>
+      <p>Welcome!</p>
+    </div>
+    <div class="modal-body">
+      <p>Strengthen Your DNA is a web application that allows you to create a potential family
+      tree from TROVE databases. Have fun finding & searching for family members!</p> 
+    </div>
+<div class="modal-footer">
+	<p>To start your family tree:</p>
+    
+    <div id="fb-root"></div>
    	<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" 
 	data-auto-logout-link="true" onlogin="successfulLogin()"  data-show-faces="true"></div>
- 
- 
-</div> 	
+	</div> 
+	<p id="OR"> OR</p>	
+	<div>
+	<a id="start_btn" href="http://deco1800-405.uqcloud.net/family_tree.php"><button id=start_btn>Continue without Facebook</button></a>
 
+</div>
+  </div>
+		
+		
+		<script>
+// Get the modal
+var modal = document.getElementById('myModal');
 
-<div id="section1" class="parallax">
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</div>
 
 
 </div>
 
-<section>
-	<div id="about">
-	<h1> About </h1>
-	<p> Strengthen Your DNA is reimagining TROVE data in a fun and exciting way!<br>
-	We allow you to search thousands of potential ansestors that have been lost in <br>
-	the TROVE databases to find potential family members. You can even share your discoveries <br>
-	with family and friends or print them out. Keep scrolling for How To Steps or simply log<br>
-	in to Facebook to start you journey.
-	</div>
-</section>
-
-<div id="section2" class="parallax">
-</div>
-
-<section>
-	<div id="how_to">
-	<h1> How TO </h1>
-	<p>
-	</div>
-</section>
-
-<div id="section3" class="parallax">
-
-
-</div>
-<!--navabr--> 
-  <div id="navbar">
-  	
-  	
-	
-  		
-  		<ul id="index_nav">
-   			 <li><a href="#section1">Strengthen My DNA</a>
-   			 <!--<li><a href="family_tree.php">Family Tree</a></li> -->
-   			 <li><a href="#about">About</a></li>
-   			 <li><a href="#how_to">How to</a></li>
-		</ul>
-	</div>
-</body>
    
 <!--
     	<div class="row-fluid">

@@ -4,17 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/google_jquery.min.js"></script>
-<script src="js/smartpaginator.js" type="text/javascript"></script>
-<script src="jquery.lazyload.js"></script>
-
+<!--<script src="js/smartpaginator.js" type="text/javascript"></script> -->
 <!--<link rel="stylesheet" href="css/jquery-ui.css"> -->
 <link rel="stylesheet" href="css/style.css" media="screen">
 <link rel="stylesheet" href="css/print.css" media="print">
 <!--<link href="css/smartpaginator.css" rel="stylesheet" type="text/css" />-->
 <style>
 .ui-widget-content {
-	width: 7vw;
-	height: 7vw;
+	width: 100%;
+	height: 100%;
 	padding: 0.5em;
 	margin: 10px 10px 10px 0;
 }
@@ -49,8 +47,8 @@ element.style {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <div id= "left_container" class="noprint">
-  <div id = "status"></div>
-  <p class = "lead">Enter your surname here:</p>
+  <div id = "status"><p></p></div>
+  <p id="imgCount" class = "lead">Find better relatives with your name:</p>
   <form action="#" id="searchTrove">
     <input id="searchTerm" type="text" />
     <button type="submit" id="searchbtn">Search</button>
@@ -128,14 +126,14 @@ element.style {
 <div class="container" class="noprint">
   <div id= "treeLabelParents" class="treeLabels" >Parents</div>
 <div class="child" id="div13" ondrop="drop(event)" ondragover="allowDrop(event)">
-  <form action="upload.php" class="dropzone" id="dropzone">
+  <form action="upload.php" class="dropzone" id="dropzone"  ondragover="allowDrop(event)" ondrop="drop(event)">
     <div class="fallback">
       <input name="file" type="file" multiple/>
     </div>
   </form>
 </div>
 <div class="child" id="div14" ondrop="drop(event)" ondragover="allowDrop(event)">
-  <form action="upload.php" class="dropzone" id="dropzone">
+  <form action="upload.php" class="dropzone" id="dropzone"   ondragover="allowDrop(event)" ondrop="drop(event)">
     <div class="fallback">
       <input name="file" type="file" multiple/>
     </div>
@@ -145,7 +143,7 @@ element.style {
 <div class="container" class="noprint">
   <div id= "treeLabelYou" class="treeLabels">You</div>
 <div class="child" id="div15" ondrop="drop(event)" ondragover="allowDrop(event)">
-  <form action="upload.php" class="dropzone" id="dropzone">
+  <form action="upload.php" class="dropzone" id="dropzone" ondragover="allowDrop(event)" ondrop="drop(event)">
     <div class="fallback">
       <input name="file" type="file" multiple/>
     </div>
@@ -156,41 +154,45 @@ element.style {
 <!-- Image Slider-->
 
 <button class="next" class="noprint">
-<div id="buttonText">Next<br>
-Background<br>
-</div>
-</button>
-<button class="prev" class="noprint">
-Previous<br>
-Background
-</button>
+<div id="buttonText">Next<br>Background<br></div></button>
+<button class="prev" class="noprint">Previous<br>Background</button>
 <div class="image_slider">
-  <div style="display: inline-block;"> 
-  <img class="tree_background" src="Images/CloudTreeLong_compressed_smallest.png"/>
-  <img class = "connector" src="Images/Connector.png"/>
-   
-  </div>
-  <div>
-  <img src="Images/FlowerTree_smallest.png"/>
-  <img class = "connector" src="Images/Connector.png"/>
+  <div style="display: inline-block;"> <img src="Images/Brick.jpg"/></div>
+  <div> <img src="Images/nightsky.jpg"/></div>
+  <div> <img  src="Images/sea.jpg"/></div>
+  <div> <img  src="Images/road.jpg"/></div>
+  <div> <img  src="Images/travel.jpg"/></div>
+  <div> <img  src="Images/lighthouse .jpg"/></div>
+<!--  <div> <img  src="Images/whale.jpg"/></div> 
+  <div> <img  src="Images/city.jpg"/></div>
+  <div> <img  src="Images/flower.jpg"/></div> -->
+  <div> <img  src="Images/sunset.jpg"/></div>
+  <div> <img  src="Images/lightning.jpg"/></div>
+  <div> <img  src="Images/beachbook.jpg"/></div>
+  <div> <img  src="Images/snowsky.jpg"/></div>
 </div>
-  <div> <img src="Images/DotTree_smallest.png"/><img class = "connector" src="Images/Connector.png"/></div>
-  <div> <img src="Images/tree_index7.jpg"/><img class = "connector" src="Images/Connector.png"/> </div>
-  <div> <img src="Images/FlowerTree_smallest.png"/><img class = "connector" src="Images/Connector.png"/> </div>
-  <div> <img src="Images/tree_index6.jpg"/> <img class = "connector" src="Images/Connector.png"/></div>
-  <div> <img src="Images/Brick.jpg"/> <img class = "connector" src="Images/Pipe_Connector.png"/></div>
-  <div> <img src="Images/nightsky.jpg"/> <img class = "connector" src="Images/Lightning_Connector.png"/></div>
-   <div> <img src="Images/sea.jpg"/> <img class = "connector" src="Images/Tree_Connector.png"/></div>
 
+<!-- Connector Slider-->
+<button class="next_c" class="noprint">
+<div id="buttonText">Next<br>Connector<br></div></button>
+<button class="prev_c" class="noprint">Previous<br>Connector</button>
+<div class="connector_slider">
+  <div style="display: inline-block;"> 
+  <img src="Images/Connector.png"/></div>
+  <div><img src="Images/Pipe_Connector.png"/></div>
+  <div><img src="Images/Lightning_Connector.png"/></div>
+  <div><img src="Images/Tree_Connector.png"/></div>
+  <div><img src="Images/1x1pixel.png"/></div>
 </div>
 </div>
+
 <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
 </body>
 <div id="navbar" class="noprint">
-  <ul>
+  <ul>form
     <li><a href="index.php">Home</a></li>
-    <li><a href="#" onClick=" window.print(); return false">Print Your Family Tree</a></li>
-    <li><a data-pin-do="buttonBookmark" data-pin-tall="true" data-pin-round="true" 
+    <!--<li><a href="#" onClick=" window.print(); return false">Print Your Family Tree</a></li>--!>
+    <li id="pinterest"><a data-pin-do="buttonBookmark" data-pin-tall="true" data-pin-round="true" 
   	data-pin-save="false" href="https://www.pinterest.com/pin/create/button/"><img 
   	src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" /></a></li>
     <li>
@@ -198,6 +200,7 @@ Background
   	data-layout="button_count" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" 
   	target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdeco1800-405.uqcloud.net%2Ffamily_tree.php&amp;src=sdkpreparse">Share</a></div>
     </li>
+     <li id="TROVE"><img src="/Images/TROVE.png"</li>
   </ul>
 </div>
 
